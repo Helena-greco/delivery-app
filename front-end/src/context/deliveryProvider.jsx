@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import DeliveryContext from './deliveryContext';
 
 const DeliveryProvider = ({ children }) => {
-  const context = { };
+  const [user, setUser] = useState({});
+
+  const context = {
+    user,
+    setUser,
+  };
   return (
     <DeliveryContext.Provider value={ context }>
       {children}

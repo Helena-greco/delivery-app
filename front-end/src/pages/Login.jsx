@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import { fetchApi } from '../services/fetchApi';
+import DeliveryContext from '../context/deliveryContext';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { user, setUser } = useContext(DeliveryContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +28,11 @@ const Login = () => {
     }
     const POST = 200;
     if (result.status === POST) {
+      const body = await result.json();
+      const { name, email, role, token } = body;
+      setUser({ name, email, role, token });
+      console.log(user);
+      localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
       navigate('/customer/products');
     }
   };
