@@ -8,7 +8,7 @@ import DeliveryContext from '../context/deliveryContext';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, setUser } = useContext(DeliveryContext);
+  const { setUser } = useContext(DeliveryContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +31,6 @@ const Login = () => {
       const body = await result.json();
       const { name, email, role, token } = body;
       setUser({ name, email, role, token });
-      console.log(user);
       localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
       navigate('/customer/products');
     }
