@@ -1,9 +1,16 @@
 import React, { useContext } from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import DeliveryContext from '../context/deliveryContext';
 
 const Header = () => {
   const { user } = useContext(DeliveryContext);
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
 
   return (
     <Navbar expand="sm" bg="dark" variant="dark">
@@ -12,13 +19,13 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link
-              href="/costumer/products"
+              href="/customer/products"
               data-testid="customer_products__element-navbar-link-products"
             >
               Produtos
             </Nav.Link>
             <Nav.Link
-              href="/costumer/orders"
+              href="/customer/orders"
               data-testid="customer_products__element-navbar-link-orders"
             >
               Meus pedidos
@@ -32,6 +39,7 @@ const Header = () => {
             </Nav.Link>
             <Nav.Link
               data-testid="customer_products__element-navbar-link-logout"
+              onClick={ logout }
             >
               Sair
             </Nav.Link>
