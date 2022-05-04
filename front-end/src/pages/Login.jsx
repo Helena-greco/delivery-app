@@ -29,7 +29,7 @@ const Login = () => {
     const POST = 200;
     if (result.status === POST) {
       const body = await result.json();
-      const { name, email, role, token } = body;
+      const { name, role, token } = body;
       setUser({ name, email, role, token });
       localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
       navigate('/customer/products');
