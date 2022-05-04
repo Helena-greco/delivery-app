@@ -15,19 +15,15 @@ const Customer = () => {
     apiProducts();
   }, []);
 
-  const mapProducts = () => {
-    return products.map((product, index) => {
-      return (
-        <CardComponent
-          id={ index + 1 }
-          key={ product.id }
-          name={ product.name }
-          price={ product.price }
-          url_image={ product.url_image }
-        />
-      );
-    });
-  }
+  const mapProducts = () => products.map((product, index) => (
+    <CardComponent
+      id={ index + 1 }
+      key={ product.id }
+      name={ product.name }
+      price={ product.price }
+      urlImage={ product.url_image }
+    />
+  ));
 
   return (
     <>
@@ -35,7 +31,7 @@ const Customer = () => {
       <h1>Cliente</h1>
       { mapProducts() }
     </>
-  )
+  );
 };
 
 export default Customer;
