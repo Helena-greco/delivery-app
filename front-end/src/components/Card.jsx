@@ -19,7 +19,7 @@ const CardComponent = ({ id, name, price, urlImage }) => (
       <Card.Text
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        { price.replace(/./g, ',') }
+        { price.replace('.', ',') }
 
       </Card.Text>
       <Button
