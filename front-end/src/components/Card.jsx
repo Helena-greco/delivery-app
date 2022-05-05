@@ -23,10 +23,9 @@ const CardComponent = ({ id, name, price, urlImage }) => {
   useEffect(() => {
     setTotalCard(quantity * Number(price));
     const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
-    const indexProduct = dataStorage.findIndex(product => product.id === id);
+    const indexProduct = dataStorage.findIndex((product) => product.id === id);
     const result = dataStorage.splice(indexProduct, 1, { id, quantity });
-    console.log(result);
-    localStorage.setItem('carShop', JSON.stringify([ ...dataStorage, result ]));
+    localStorage.setItem('carShop', JSON.stringify(dataStorage));
   }, [quantity]);
 
   return (
@@ -72,7 +71,7 @@ const CardComponent = ({ id, name, price, urlImage }) => {
             <Button
               variant="warning"
               data-testid={ `customer_products__button-card-add-item-${id}` }
-              onClick={ () => handleIncrease(price) }
+              onClick={ () => handleIncrease() }
             >
               +
             </Button>

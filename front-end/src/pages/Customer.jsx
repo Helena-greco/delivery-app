@@ -37,8 +37,8 @@ const Customer = () => {
       <Header />
       <Row className="g-5 text-center">
         { mapProducts() }
-      <ButtonCart totalPrice={ total }/>
       </Row>
+      <ButtonCart totalPrice={ total } />
     </>
   );
 };
