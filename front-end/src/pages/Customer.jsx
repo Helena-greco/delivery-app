@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Row } from 'react-bootstrap';
 import Header from '../components/Header';
 import CardComponent from '../components/Card';
 import { fetchApiProducts } from '../services/fetchApi';
@@ -21,7 +22,7 @@ const Customer = () => {
       key={ product.id }
       name={ product.name }
       price={ product.price }
-      urlImage={ product.url_image }
+      urlImage={ product.urlImage }
     />
   ));
 
@@ -29,7 +30,9 @@ const Customer = () => {
     <>
       <Header />
       <h1>Cliente</h1>
-      { mapProducts() }
+      <Row className="g-4 text-center">
+        { mapProducts() }
+      </Row>
     </>
   );
 };
