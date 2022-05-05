@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Button, Col, InputGroup, FormControl } from 'react-bootstrap';
 import '../style/Card.css';
 import PropTypes from 'prop-types';
 
 const CardComponent = ({ id, name, price, urlImage }) => {
   const [quantity, setQuantity] = useState(0);
+  const [totalCard, setTotalCard] = useState(0);
 
   const handleDecrease = () => {
     setQuantity(quantity - 1);
@@ -14,6 +15,19 @@ const CardComponent = ({ id, name, price, urlImage }) => {
   const handleIncrease = () => {
     setQuantity(quantity + 1);
   };
+
+  const changeValue = ({ target }) => {
+    setQuantity(Number(target.value));
+  };
+
+  useEffect(() => {
+    setTotalCard(quantity * Number(price));
+    const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
+    const indexProduct = dataStorage.findIndex(product => product.id === id);
+    const result = dataStorage.splice(indexProduct, 1, { id, quantity });
+    console.log(result);
+    localStorage.setItem('carShop', JSON.stringify([ ...dataStorage, result ]));
+  }, [quantity]);
 
   return (
     <Col className="text-center">
@@ -53,11 +67,12 @@ const CardComponent = ({ id, name, price, urlImage }) => {
               className="text-center"
               data-testid={ `customer_products__input-card-quantity-${id}` }
               value={ quantity }
+              onChange={ changeValue }
             />
             <Button
               variant="warning"
               data-testid={ `customer_products__button-card-add-item-${id}` }
-              onClick={ handleIncrease }
+              onClick={ () => handleIncrease(price) }
             >
               +
             </Button>
