@@ -18,6 +18,7 @@ const CardComponent = ({ id, name, price, urlImage }) => {
   return (
     <Col className="text-center">
       <Card
+        className="border-2"
         border="warning"
         style={ { width: '18rem', margin: 'auto', marginTop: '20px' } }
       >
