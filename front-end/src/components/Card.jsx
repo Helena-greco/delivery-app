@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button, Col, InputGroup, FormControl } from 'react-bootstrap';
+import '../style/Card.css';
 import PropTypes from 'prop-types';
 
 const CardComponent = ({ id, name, price, urlImage }) => {
