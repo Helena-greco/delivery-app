@@ -29,8 +29,7 @@ const Customer = () => {
   return (
     <>
       <Header />
-      <h1>Cliente</h1>
-      <Row className="g-4 text-center">
+      <Row className="g-5 text-center">
         { mapProducts() }
       </Row>
     </>

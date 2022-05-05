@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 import { useNavigate } from 'react-router-dom';
 import { fetchApiRegister } from '../services/fetchApi';
 
@@ -45,8 +46,11 @@ const Register = () => {
   );
 
   return (
-    <>
-      <Form className="card mt-3 pb-3 pt-1 container-sm w-50">
+    <Container style={ { marginTop: '250px' } }>
+      <Form
+        className="card mt-3 pb-3 pt-1 container-sm w-50"
+        style={ { maxWidth: '500px', minWidth: '300px' } }
+      >
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Nome</Form.Label>
           <Form.Control
@@ -90,7 +94,11 @@ const Register = () => {
         </Button>
       </Form>
       { error && ALERT }
-    </>
+      <p style={ { margin: 'auto', maxWidth: '240px' } }>
+        Já possui uma conta?
+        <a href="/login">Fazer Login</a>
+      </p>
+    </Container>
   );
 };
 

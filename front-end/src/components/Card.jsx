@@ -7,6 +7,7 @@ const CardComponent = ({ id, name, price, urlImage }) => {
 
   const handleDecrease = () => {
     setQuantity(quantity - 1);
+    if (quantity <= 0) setQuantity(0);
   };
 
   const handleIncrease = () => {
@@ -15,7 +16,10 @@ const CardComponent = ({ id, name, price, urlImage }) => {
 
   return (
     <Col className="text-center">
-      <Card style={ { width: '18rem', margin: 'auto' } }>
+      <Card
+        border="warning"
+        style={ { width: '18rem', margin: 'auto', marginTop: '20px' } }
+      >
         <Card.Img
           data-testid={ `customer_products__img-card-bg-image-${id}` }
           src={ urlImage }
@@ -36,7 +40,7 @@ const CardComponent = ({ id, name, price, urlImage }) => {
             style={ { margin: 'auto' } }
           >
             <Button
-              variant="primary"
+              variant="warning"
               data-testid={ `customer_products__button-card-rm-item-${id}` }
               onClick={ handleDecrease }
             >
@@ -49,7 +53,7 @@ const CardComponent = ({ id, name, price, urlImage }) => {
               value={ quantity }
             />
             <Button
-              variant="primary"
+              variant="warning"
               data-testid={ `customer_products__button-card-add-item-${id}` }
               onClick={ handleIncrease }
             >
