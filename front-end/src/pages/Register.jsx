@@ -38,8 +38,11 @@ const Register = () => {
     <Alert
       key="danger"
       variant="danger"
-      className="error"
+      className="container-sm error text-center mt-3 w-50"
       data-testid="common_register__element-invalid_register"
+      style={ { maxWidth: '400px', minWidth: '300px' } }
+      onClose={ () => setError(false) }
+      dismissible
     >
       Nome ou email já existentes.
     </Alert>
@@ -93,11 +96,11 @@ const Register = () => {
           Cadastrar
         </Button>
       </Form>
-      { error && ALERT }
       <p style={ { margin: 'auto', maxWidth: '240px' } }>
         Já possui uma conta?
         <a href="/login">Fazer Login</a>
       </p>
+      { error && ALERT }
     </Container>
   );
 };
