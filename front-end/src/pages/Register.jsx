@@ -49,7 +49,7 @@ const Register = () => {
   );
 
   return (
-    <Container style={ { marginTop: '250px' } }>
+    <Container style={ { marginTop: '100px' } }>
       <Form
         className="card mt-3 pb-3 pt-1 container-sm w-50"
         style={ { maxWidth: '500px', minWidth: '300px' } }

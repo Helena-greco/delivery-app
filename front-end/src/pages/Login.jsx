@@ -51,7 +51,7 @@ const Login = () => {
   );
 
   return (
-    <Container style={ { marginTop: '100px' } }>
+    <Container style={ { marginTop: '20px' } }>
       <Figure className="container-sm text-center">
         <Figure.Image
           width={ 230 }
