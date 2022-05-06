@@ -13,7 +13,7 @@ const Customer = () => {
     const dataStorage = JSON.parse(localStorage.getItem('carShop'));
     console.log(dataStorage);
     if (dataStorage) {
-      setProducts(dataStorage)
+      setProducts(dataStorage);
     } else {
       const response = await fetchApiProducts();
       const data = await response.json();
@@ -28,7 +28,7 @@ const Customer = () => {
       name={ product.name }
       price={ product.price }
       urlImage={ product.urlImage }
-      quantityStorage={ product.quantity || 0}
+      quantityStorage={ product.quantity || 0 }
       setTotalCart={ setTotalCart }
     />
   ));
@@ -39,7 +39,7 @@ const Customer = () => {
       <Row className="g-5 text-center">
         { mapProducts() }
       </Row>
-      <ButtonCart totalCart={totalCart}/>
+      <ButtonCart totalCart={ totalCart } />
     </>
   );
 };

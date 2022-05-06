@@ -23,7 +23,7 @@ const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCar
   const totalValueCart = (storage) => {
     const total = storage.reduce((acc, product) => acc + product.totalCard, 0);
     setTotalCart(total);
-  }
+  };
 
   const updateLocalStorage = (storage) => {
     const indexProduct = storage.findIndex((product) => product.id === id);
@@ -33,7 +33,7 @@ const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCar
     } else {
       storage.push({ id, name, price, quantity, totalCard, urlImage });
     }
-  }
+  };
 
   useEffect(() => {
     const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
@@ -42,8 +42,6 @@ const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCar
     totalValueCart(dataStorage);
     setTotalCard(quantity * Number(price));
   }, [quantity, totalCard]);
-  
-
 
   return (
     <Col className="text-center">
@@ -65,7 +63,8 @@ const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCar
           <Card.Text
             data-testid={ `customer_products__element-card-price-${id}` }
           >
-            { Number(price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }
+            { Number(price)
+              .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
           </Card.Text>
           <InputGroup
             className="mb-3 w-50"
@@ -105,6 +104,8 @@ CardComponent.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   urlImage: PropTypes.string.isRequired,
+  quantityStorage: PropTypes.number.isRequired,
+  setTotalCart: PropTypes.func.isRequired,
 };
 
 export default CardComponent;

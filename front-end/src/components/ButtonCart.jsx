@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,10 +17,15 @@ const ButtonCart = ({ totalCart }) => {
       disabled={ totalCart === 0 }
     >
       <span data-testid="customer_products__checkout-bottom-value">
-        {`Ver Carrinho: ${ totalCart.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }`}
+        {`Ver Carrinho: ${totalCart
+          .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} `}
       </span>
     </Button>
   );
+};
+
+ButtonCart.propTypes = {
+  totalCart: PropTypes.number.isRequired,
 };
 
 export default ButtonCart;
