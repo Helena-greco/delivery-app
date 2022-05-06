@@ -3,8 +3,8 @@ import { Card, Button, Col, InputGroup, FormControl } from 'react-bootstrap';
 import '../style/Card.css';
 import PropTypes from 'prop-types';
 
-const CardComponent = ({ id, name, price, urlImage }) => {
-  const [quantity, setQuantity] = useState(0);
+const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCart }) => {
+  const [quantity, setQuantity] = useState(quantityStorage);
   const [totalCard, setTotalCard] = useState(0);
 
   const handleDecrease = () => {
@@ -20,21 +20,27 @@ const CardComponent = ({ id, name, price, urlImage }) => {
     setQuantity(Number(target.value));
   };
 
+  const totalValueCart = (storage) => {
+    const total = storage.reduce((acc, product) => acc + product.totalCard, 0)
+      .toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+    setTotalCart(total);
+  }
+
   useEffect(() => {
-    const createLocalStorage = () => {
-      const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
-      const indexProduct = dataStorage.findIndex((product) => product.id === id);
-      if (indexProduct >= 0) {
-        dataStorage[indexProduct].totalCard = totalCard;
-        dataStorage[indexProduct].quantity = quantity;
-      } else {
-        dataStorage.push({ id, name, price, quantity, totalCard });
-      }
-      localStorage.setItem('carShop', JSON.stringify([...dataStorage]));
-      setTotalCard(quantity * Number(price));
-    };
-    createLocalStorage();
-  }, [id, name, price, quantity, totalCard]);
+    const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
+    const indexProduct = dataStorage.findIndex((product) => product.id === id);
+    if (indexProduct >= 0) {
+      dataStorage[indexProduct].totalCard = totalCard;
+      dataStorage[indexProduct].quantity = quantity;
+    } else {
+      dataStorage.push({ id, name, price, quantity, totalCard, urlImage });
+    }
+    localStorage.setItem('carShop', JSON.stringify([...dataStorage]));
+    totalValueCart(dataStorage);
+    setTotalCard(quantity * Number(price));
+  }, [quantity, totalCard]);
+  
+
 
   return (
     <Col className="text-center">
@@ -56,7 +62,7 @@ const CardComponent = ({ id, name, price, urlImage }) => {
           <Card.Text
             data-testid={ `customer_products__element-card-price-${id}` }
           >
-            { price.replace('.', ',') }
+            { Number(price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }
           </Card.Text>
           <InputGroup
             className="mb-3 w-50"
