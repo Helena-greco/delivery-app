@@ -9,7 +9,6 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
   useEffect(() => {
     setItemsCard(filteredItems);
   }, []);
-  console.log(itemsCard);
 
   const handleItems = (index) => {
     const items = filteredItems;
@@ -31,55 +30,58 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
         </tr>
       </thead>
       <tbody>
-        { itemsCard.length && itemsCard.map((product, index) => (
+        {itemsCard.length && itemsCard.map((product, index) => (
           <tr key={ index }>
-            <td>{index + 1}</td>
+            <td>{ index + 1 }</td>
             <td
               data-testid={ `customer_checkout__element-order-table-name-${index + 1}` }
             >
-              {product.name}
+              { product.name }
             </td>
             <td
               data-testid={
                 `customer_checkout__element-order-table-quantity-${index + 1}`
               }
             >
-              {product.quantity}
+              { product.quantity }
             </td>
             <td
               data-testid={
                 `customer_checkout__element-order-table-unit-price-${index + 1}`
               }
             >
-              {product.price}
+              { product.price }
             </td>
             <td
               data-testid={
                 `customer_checkout__element-order-table-sub-total-${index + 1}`
               }
             >
-              {product.totalCard}
+              { product.totalCard }
             </td>
             <td>
               <Button
                 data-testid={
                   `customer_checkout__element-order-table-remove-${index + 1}`
                 }
-                onClick={ () => { handleItems(index) } }
+                onClick={ () => { handleItems(index); } }
               >
                 Remover
               </Button>
             </td>
           </tr>
-        )) }
+        ))}
       </tbody>
     </Table>
   );
 };
 
-/* TableProducts.propTypes = {
-  itemsCard: PropTypes. ,
-  setItemsCard: PropTypes.func,
-}; */
+TableProducts.propTypes = {
+  itemsCard: PropTypes.shape({
+    length: PropTypes.func,
+    map: PropTypes.func,
+  }).isRequired,
+  setItemsCard: PropTypes.func.isRequired,
+};
 
 export default TableProducts;
