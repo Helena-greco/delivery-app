@@ -32,9 +32,17 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
       <tbody>
         {itemsCard.length && itemsCard.map((product, index) => (
           <tr key={ index }>
-            <td>{ index + 1 }</td>
             <td
-              data-testid={ `customer_checkout__element-order-table-name-${index + 1}` }
+              data-testid={
+                `customer_checkout__element-order-table-item-number-${index + 1}`
+              }
+            >
+              { index + 1 }
+            </td>
+            <td
+              data-testid={
+                `customer_checkout__element-order-table-name-${index + 1}`
+              }
             >
               { product.name }
             </td>

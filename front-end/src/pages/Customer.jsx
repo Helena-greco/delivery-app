@@ -13,11 +13,10 @@ const Customer = () => {
     const dataStorage = JSON.parse(localStorage.getItem('carShop'));
     if (dataStorage) {
       setProducts(dataStorage);
-    } else {
-      const response = await fetchApiProducts();
-      const data = await response.json();
-      setProducts(data);
     }
+    const response = await fetchApiProducts();
+    const data = await response.json();
+    setProducts(data);
   }, []);
 
   const mapProducts = () => products.map((product, index) => (
