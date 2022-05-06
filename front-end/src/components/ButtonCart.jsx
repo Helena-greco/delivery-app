@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const ButtonCart = ({ totalCart }) => {
   const navigate = useNavigate();
 
-
   return (
     <Button
       size="lg"
@@ -15,10 +14,10 @@ const ButtonCart = ({ totalCart }) => {
       onClick={ () => { navigate('/customer/checkout'); } }
       className="position-fixed bottom-0 end-0 m-3 z-index-auto"
       style={ { zIndex: 3 } }
-      disabled={ parseInt(totalCart, 10) === 0 }
+      disabled={ totalCart === 0 }
     >
       <span data-testid="customer_products__checkout-bottom-value">
-        {`Ver Carrinho: ${ totalCart }`}
+        {`Ver Carrinho: ${ totalCart.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }`}
       </span>
     </Button>
   );

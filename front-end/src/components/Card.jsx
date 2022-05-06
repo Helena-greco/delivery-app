@@ -21,8 +21,7 @@ const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCar
   };
 
   const totalValueCart = (storage) => {
-    const total = storage.reduce((acc, product) => acc + product.totalCard, 0)
-      .toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+    const total = storage.reduce((acc, product) => acc + product.totalCard, 0);
     setTotalCart(total);
   }
 
@@ -76,6 +75,7 @@ const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCar
               variant="warning"
               data-testid={ `customer_products__button-card-rm-item-${id}` }
               onClick={ handleDecrease }
+              disabled={ quantity === 0 }
             >
               -
             </Button>
@@ -89,7 +89,7 @@ const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCar
             <Button
               variant="warning"
               data-testid={ `customer_products__button-card-add-item-${id}` }
-              onClick={ () => handleIncrease() }
+              onClick={ handleIncrease }
             >
               +
             </Button>
