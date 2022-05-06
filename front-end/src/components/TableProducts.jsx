@@ -30,39 +30,39 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
         </tr>
       </thead>
       <tbody>
-        {itemsCard.length && itemsCard.map((product, index) => (
+        {itemsCard.length ? itemsCard.map((product, index) => (
           <tr key={ index }>
             <td
               data-testid={
-                `customer_checkout__element-order-table-item-number-${index + 1}`
+                `customer_checkout__element-order-table-item-number-${index}`
               }
             >
               { index + 1 }
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-table-name-${index + 1}`
+                `customer_checkout__element-order-table-name-${index}`
               }
             >
               { product.name }
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-table-quantity-${index + 1}`
+                `customer_checkout__element-order-table-quantity-${index}`
               }
             >
               { product.quantity }
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-table-unit-price-${index + 1}`
+                `customer_checkout__element-order-table-unit-price-${index}`
               }
             >
               { product.price }
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-table-sub-total-${index + 1}`
+                `customer_checkout__element-order-table-sub-total-${index}`
               }
             >
               { product.totalCard }
@@ -70,7 +70,7 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
             <td>
               <Button
                 data-testid={
-                  `customer_checkout__element-order-table-remove-${index + 1}`
+                  `customer_checkout__element-order-table-remove-${index}`
                 }
                 onClick={ () => { handleItems(index); } }
               >
@@ -78,7 +78,7 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
               </Button>
             </td>
           </tr>
-        ))}
+        )) : <p>Você não adicionou nenhum item.</p>}
       </tbody>
     </Table>
   );

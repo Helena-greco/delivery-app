@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import TableProducts from '../components/TableProducts';
 import Header from '../components/Header';
 
@@ -12,13 +12,13 @@ const CheckoutCustomer = () => {
       <Container>
         <h1>Finalizar pedido</h1>
         <TableProducts itemsCard={ itemsCard } setItemsCard={ setItemsCard } />
-        <span data-testid="customer_checkout__element-order-total-price">
+        <Button variant="primary" disabled data-testid="customer_checkout__element-order-total-price">
           Total:
           {
             itemsCard.reduce((total, item) => total + item.totalCard, 0)
               .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
           }
-        </span>
+        </Button>
       </Container>
     </>
   );
