@@ -26,15 +26,19 @@ const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCar
     setTotalCart(total);
   }
 
+  const updateLocalStorage = (storage) => {
+    const indexProduct = storage.findIndex((product) => product.id === id);
+    if (indexProduct >= 0) {
+      storage[indexProduct].totalCard = totalCard;
+      storage[indexProduct].quantity = quantity;
+    } else {
+      storage.push({ id, name, price, quantity, totalCard, urlImage });
+    }
+  }
+
   useEffect(() => {
     const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
-    const indexProduct = dataStorage.findIndex((product) => product.id === id);
-    if (indexProduct >= 0) {
-      dataStorage[indexProduct].totalCard = totalCard;
-      dataStorage[indexProduct].quantity = quantity;
-    } else {
-      dataStorage.push({ id, name, price, quantity, totalCard, urlImage });
-    }
+    updateLocalStorage(dataStorage);
     localStorage.setItem('carShop', JSON.stringify([...dataStorage]));
     totalValueCart(dataStorage);
     setTotalCard(quantity * Number(price));
