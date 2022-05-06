@@ -58,7 +58,7 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
                 `customer_checkout__element-order-table-unit-price-${index}`
               }
             >
-              { product.price }
+              { product.price.replace('.', ',') }
             </td>
             <td
               data-testid={
