@@ -12,6 +12,13 @@ const CheckoutCustomer = () => {
       <Container>
         <h1>Finalizar pedido</h1>
         <TableProducts itemsCard={ itemsCard } setItemsCard={ setItemsCard } />
+        <span data-testid="customer_checkout__element-order-total-price">
+          Total:
+          {
+            itemsCard.reduce((total, item) => total + item.totalCard, 0)
+              .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+          }
+        </span>
       </Container>
     </>
   );
