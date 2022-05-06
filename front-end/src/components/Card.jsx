@@ -21,12 +21,20 @@ const CardComponent = ({ id, name, price, urlImage }) => {
   };
 
   useEffect(() => {
-    setTotalCard(quantity * Number(price));
-    const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
-    const indexProduct = dataStorage.findIndex((product) => product.id === id);
-    const result = dataStorage.splice(indexProduct, 1, { id, quantity });
-    localStorage.setItem('carShop', JSON.stringify(dataStorage));
-  }, [quantity]);
+    const createLocalStorage = () => {
+      const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
+      const indexProduct = dataStorage.findIndex((product) => product.id === id);
+      if (indexProduct >= 0) {
+        dataStorage[indexProduct].totalCard = totalCard;
+        dataStorage[indexProduct].quantity = quantity;
+      } else {
+        dataStorage.push({ id, name, price, quantity, totalCard });
+      }
+      localStorage.setItem('carShop', JSON.stringify([...dataStorage]));
+      setTotalCard(quantity * Number(price));
+    };
+    createLocalStorage();
+  }, [id, name, price, quantity, totalCard]);
 
   return (
     <Col className="text-center">

@@ -7,9 +7,6 @@ import { fetchApiProducts } from '../services/fetchApi';
 
 const Customer = () => {
   const [products, setProducts] = useState([]);
-  const [totalCard, setTotalCard] = useState(0);
-
-  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const apiProducts = async () => {
@@ -27,8 +24,6 @@ const Customer = () => {
       name={ product.name }
       price={ product.price }
       urlImage={ product.urlImage }
-      setTotalCard={ setTotalCard }
-      totalCard={ totalCard }
     />
   ));
 
@@ -38,7 +33,7 @@ const Customer = () => {
       <Row className="g-5 text-center">
         { mapProducts() }
       </Row>
-      <ButtonCart totalPrice={ total } />
+      <ButtonCart />
     </>
   );
 };

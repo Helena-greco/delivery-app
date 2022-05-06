@@ -9,6 +9,7 @@ const Header = () => {
 
   const logout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('carShop');
     navigate('/login');
   };
 
