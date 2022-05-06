@@ -11,7 +11,6 @@ const Customer = () => {
 
   useEffect(async () => {
     const dataStorage = JSON.parse(localStorage.getItem('carShop'));
-    console.log(dataStorage);
     if (dataStorage) {
       setProducts(dataStorage);
     } else {
