@@ -7,14 +7,18 @@ import { fetchApiProducts } from '../services/fetchApi';
 
 const Customer = () => {
   const [products, setProducts] = useState([]);
+  const [totalCart, setTotalCart] = useState(0);
 
-  useEffect(() => {
-    const apiProducts = async () => {
+  useEffect(async () => {
+    const dataStorage = JSON.parse(localStorage.getItem('carShop'));
+    console.log(dataStorage);
+    if (dataStorage) {
+      setProducts(dataStorage)
+    } else {
       const response = await fetchApiProducts();
       const data = await response.json();
       setProducts(data);
-    };
-    apiProducts();
+    }
   }, []);
 
   const mapProducts = () => products.map((product, index) => (
@@ -24,6 +28,8 @@ const Customer = () => {
       name={ product.name }
       price={ product.price }
       urlImage={ product.urlImage }
+      quantityStorage={ product.quantity || 0}
+      setTotalCart={ setTotalCart }
     />
   ));
 
@@ -33,7 +39,7 @@ const Customer = () => {
       <Row className="g-5 text-center">
         { mapProducts() }
       </Row>
-      <ButtonCart />
+      <ButtonCart totalCart={totalCart}/>
     </>
   );
 };
