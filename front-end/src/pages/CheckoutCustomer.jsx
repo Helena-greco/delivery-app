@@ -12,7 +12,7 @@ const CheckoutCustomer = () => {
       <Container>
         <h1>Finalizar pedido</h1>
         <TableProducts itemsCard={ itemsCard } setItemsCard={ setItemsCard } />
-        <Button variant="primary" disabled data-testid="customer_checkout__element-order-total-price">
+        <Button disabled data-testid="customer_checkout__element-order-total-price">
           Total:
           {
             itemsCard.reduce((total, item) => total + item.totalCard, 0)
