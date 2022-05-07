@@ -11,9 +11,7 @@ const Customer = () => {
 
   useEffect(async () => {
     const dataStorage = JSON.parse(localStorage.getItem('carShop'));
-    if (dataStorage) {
-      setProducts(dataStorage);
-    }
+    if (dataStorage) setProducts(dataStorage);
     const response = await fetchApiProducts();
     const data = await response.json();
     setProducts(data);
@@ -24,7 +22,7 @@ const Customer = () => {
       id={ index + 1 }
       key={ product.id }
       name={ product.name }
-      price={ product.price }
+      price={ Number(product.price) }
       urlImage={ product.urlImage }
       quantityStorage={ product.quantity || 0 }
       setTotalCart={ setTotalCart }

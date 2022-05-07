@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button, Table } from 'react-bootstrap';
+import '../style/TableProducts.css';
 import PropTypes from 'prop-types';
 
 const TableProducts = ({ itemsCard, setItemsCard }) => {
@@ -17,10 +18,17 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
     setItemsCard(items);
   };
 
+  const toLocaleString = (number) => (
+    number.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    })
+  );
+
   return (
     <Table striped bordered hover>
       <thead>
-        <tr>
+        <tr className="text-center">
           <th>Item</th>
           <th>Descrição</th>
           <th>Quantidade</th>
@@ -33,6 +41,8 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
         {itemsCard.length ? itemsCard.map((product, index) => (
           <tr key={ index }>
             <td
+              className="text-center"
+              width={ 1 }
               data-testid={
                 `customer_checkout__element-order-table-item-number-${index}`
               }
@@ -47,6 +57,8 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
               { product.name }
             </td>
             <td
+              className="text-center align-center"
+              width={ 150 }
               data-testid={
                 `customer_checkout__element-order-table-quantity-${index}`
               }
@@ -54,21 +66,29 @@ const TableProducts = ({ itemsCard, setItemsCard }) => {
               { product.quantity }
             </td>
             <td
+              className="text-center"
+              width={ 150 }
               data-testid={
                 `customer_checkout__element-order-table-unit-price-${index}`
               }
             >
-              { product.price.replace('.', ',') }
+              { toLocaleString(product.price) }
             </td>
             <td
+              className="text-center"
+              width={ 150 }
               data-testid={
                 `customer_checkout__element-order-table-sub-total-${index}`
               }
             >
-              { product.totalCard }
+              { toLocaleString(product.totalCard) }
             </td>
-            <td>
+            <td
+              className="text-center"
+              width={ 150 }
+            >
               <Button
+                variant="danger"
                 data-testid={
                   `customer_checkout__element-order-table-remove-${index}`
                 }
