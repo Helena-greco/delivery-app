@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
+
 import TableProducts from '../components/TableProducts';
 import Header from '../components/Header';
 import DetailsDelivery from '../components/DetailsDelivery';
 
 const CheckoutCustomer = () => {
   const [itemsCard, setItemsCard] = useState([]);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -13,7 +16,9 @@ const CheckoutCustomer = () => {
       <Container>
         <h1>Finalizar pedido</h1>
         <TableProducts itemsCard={ itemsCard } setItemsCard={ setItemsCard } />
-        <Button data-testid="customer_checkout__element-order-total-price">
+        <Button
+          data-testid="customer_checkout__element-order-total-price"
+        >
           Total:
           {
             itemsCard.reduce((total, item) => total + item.totalCard, 0)
@@ -21,6 +26,12 @@ const CheckoutCustomer = () => {
           }
         </Button>
         <DetailsDelivery />
+        <Button
+          onClick={ () => navigate(`/customer/orders/1`) }
+          data-testid="customer_checkout__button-submit-order"
+        >
+          Finalizar Pedido
+        </Button>
       </Container>
     </>
   );

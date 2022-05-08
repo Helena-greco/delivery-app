@@ -1,32 +1,37 @@
-import React, { useState } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Button, ListGroup } from 'react-bootstrap';
 import TableDetailsOrder from '../components/TableDetailsOrder';
 import Header from '../components/Header';
-import DetailsDelivery from '../components/DetailsDelivery';
 
 const DetailsOrder = () => {
   const [itemsCard, setItemsCard] = useState([]);
+
+  useEffect(() => { console.log('DETALHES ORDEM'); }, []);
 
   return (
     <>
       <Header />
       <Container>
         <h1>Detalhes do pedido</h1>
-        <ListGroup horizontal='md' className="my-2">
+        <ListGroup horizontal="md" className="my-2">
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-id"
           >
-            PEDIDO: {id}
+            {/* { `PEDIDO: ${id}` } */}
+            PEDIDO
           </ListGroup.Item>
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-date"
           >
-            { date }
+            {/* { date } */}
+            DATA
           </ListGroup.Item>
           <ListGroup.Item
-            data-testid="seller_order_details__element-order-details-label-delivery-status"
+            data-testid={ `seller_order_details__element-
+                      order-details-label-delivery-status` }
           >
-            { status }
+            {/* { statusOrder } */}
+            STATUS
           </ListGroup.Item>
           <ListGroup.Item
             data-testid="seller_order_details__button-preparing-check"
@@ -47,7 +52,6 @@ const DetailsOrder = () => {
               .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
           }
         </Button>
-        <DetailsDelivery />
       </Container>
     </>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 const DetailsDelivery = () => (
   <Form
@@ -26,11 +26,6 @@ const DetailsDelivery = () => (
         onChange={ ({ target }) => setNumeroEndereco(target.value) }
       />
     </Form.Group>
-    <Button
-      data-testid="customer_checkout__button-submit-order"
-    >
-      Finalizar Pedido
-    </Button>
   </Form>
 );
 

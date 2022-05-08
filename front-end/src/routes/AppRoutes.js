@@ -5,6 +5,7 @@ import Register from '../pages/Register';
 import Customer from '../pages/Customer';
 import CheckoutCustomer from '../pages/CheckoutCustomer';
 import Orders from '../pages/Orders';
+import DetailsOrder from '../pages/DetailsOrder';
 
 const AppRoutes = () => (
   <Routes>
@@ -14,6 +15,7 @@ const AppRoutes = () => (
     <Route exact path="/customer/products" element={ <Customer /> } />
     <Route exact path="/customer/checkout" element={ <CheckoutCustomer /> } />
     <Route exact path="/customer/orders" element={ <Orders /> } />
+    <Route exact path="/customer/orders/:id" element={ <DetailsOrder /> } />
   </Routes>
 );
 
