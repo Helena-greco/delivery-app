@@ -48,7 +48,6 @@ export const fetchApiProducts = async () => {
   return response;
 };
 
-
 export const fetchApiSales = async () => {
   const fetchProducts = fetch(`http://${URL}:${PORT}/customer/sales`, {
     method: 'GET',
