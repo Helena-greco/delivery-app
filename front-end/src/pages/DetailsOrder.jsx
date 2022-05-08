@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Button, ListGroup } from 'react-bootstrap';
-import TableDetailsOrder from '../components/TableDetailsOrder';
+import { useParams } from 'react-router-dom';
+
+// import TableDetailsOrder from '../components/TableDetailsOrder';
 import Header from '../components/Header';
 import { fetchApiOrderById } from '../services/fetchApi';
 
 const DetailsOrder = () => {
   const [itemsOrder, setItemsOrder] = useState([]);
+  const params = useParams();
 
   const getOrderApi = async () => {
-    const response = await fetchApiOrderById();
+    const response = await fetchApiOrderById(params.id);
     const data = await response.json();
     setItemsOrder(data);
   };
 
-  useEffect(() => {
-    getOrderApi();
-  }, []);
+  useEffect(getOrderApi, []);
 
   return (
     <>
@@ -31,13 +32,13 @@ const DetailsOrder = () => {
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-date"
           >
-            { itemsOrder.date }
+            { itemsOrder.saleDate }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid={ `seller_order_details__element-
                       order-details-label-delivery-status` }
           >
-            { itemsOrder.statusOrder }
+            { itemsOrder.status }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid="seller_order_details__button-preparing-check"
@@ -50,13 +51,10 @@ const DetailsOrder = () => {
             <Button>Saiu Para Entrega</Button>
           </ListGroup.Item>
         </ListGroup>
-        <TableDetailsOrder itemsOrder={ itemsOrder } />
+        {/* <TableDetailsOrder itemsOrder={ itemsOrder } /> */}
         <Button data-testid="seller_order_details__element-order-total-price">
           Total:
-          {
-            itemsCard.reduce((total, item) => total + item.totalCard, 0)
-              .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-          }
+          { itemsOrder.totalPrice }
         </Button>
       </Container>
     </>
