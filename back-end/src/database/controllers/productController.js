@@ -1,6 +1,6 @@
-const { getAllProducts } = require("../services/productService");
+const { getAllProducts, getAllSales } = require("../services/productService");
 
-const getAll = async (_req, res) => {
+const getProducts = async (_req, res) => {
   try {
     const data = await getAllProducts();
     return res.status(200).json(data);
@@ -9,4 +9,13 @@ const getAll = async (_req, res) => {
   }
 }
 
-module.exports = { getAll };
+const getSales = async (_req, res) => {
+  try {
+    const data = await getAllSales();
+    return res.status(200).json(data);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+}
+
+module.exports = { getProducts, getSales };

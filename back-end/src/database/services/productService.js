@@ -1,4 +1,4 @@
-const { product } = require('../models');
+const { product, sales } = require('../models');
 
 const getAllProducts = async () => {
   try {
@@ -9,4 +9,13 @@ const getAllProducts = async () => {
   }
 }
 
-module.exports = { getAllProducts };
+const getAllSales = async () => {
+  try {
+    const allSales = await sales.findAll();
+    return allSales;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { getAllProducts, getAllSales };
