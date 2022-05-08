@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import TableProducts from '../components/TableProducts';
 import Header from '../components/Header';
+import DetalhesEntrega from '../components/DetalhesEntrega';
 
 const CheckoutCustomer = () => {
   const [itemsCard, setItemsCard] = useState([]);
@@ -19,6 +20,7 @@ const CheckoutCustomer = () => {
               .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
           }
         </Button>
+        <DetalhesEntrega />
       </Container>
     </>
   );
