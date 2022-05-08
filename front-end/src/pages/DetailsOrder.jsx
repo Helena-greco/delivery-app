@@ -8,7 +8,7 @@ const DetailsOrder = () => {
   const [itemsOrder, setItemsOrder] = useState([]);
 
   useEffect(async () => {
-    const response = await fetchApiOrders();
+    const response = await fetchApiOrderById();
     const data = await response.json();
     setItemsOrder(data)
   }, []);
