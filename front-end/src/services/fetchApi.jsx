@@ -47,3 +47,16 @@ export const fetchApiProducts = async () => {
   const response = await fetchProducts;
   return response;
 };
+
+
+export const fetchApiSales = async () => {
+  const fetchProducts = fetch(`http://${URL}:${PORT}/customer/sales`, {
+    method: 'GET',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+  });
+  const response = await fetchProducts;
+  return response;
+};
