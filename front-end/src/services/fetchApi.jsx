@@ -80,8 +80,8 @@ export const fetchApiCreateOrder = async (order) => {
   return response;
 };
 
-export const fetchApiOrderById = async () => {
-  const fetchOrderById = fetch(`http://${URL}:${PORT}/customer/orders`, {
+export const fetchApiOrderById = async (id) => {
+  const fetchOrderById = fetch(`http://${URL}:${PORT}/customer/orders/${id}`, {
     method: 'GET',
     headers: {
       Accept: appJson,
