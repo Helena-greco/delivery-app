@@ -3,9 +3,10 @@ import { Card, Button, Col, InputGroup, FormControl } from 'react-bootstrap';
 import '../style/Card.css';
 import PropTypes from 'prop-types';
 
-const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCart }) => {
+const CardComponent = ({ id, name, price, urlImage, setTotalCart, quantityStorage }) => {
   const [quantity, setQuantity] = useState(quantityStorage);
-  const [totalCard, setTotalCard] = useState(0);
+  const [totalCard, setTotalCard] = useState(0 * price);
+  const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
 
   const handleDecrease = () => {
     setQuantity(quantity - 1);
@@ -30,17 +31,16 @@ const CardComponent = ({ id, name, price, urlImage, quantityStorage, setTotalCar
     if (indexProduct >= 0) {
       storage[indexProduct].totalCard = totalCard;
       storage[indexProduct].quantity = quantity;
-    } else {
+    } else if (quantity > 0) {
       storage.push({ id, name, price, quantity, totalCard, urlImage });
     }
+    localStorage.setItem('carShop', JSON.stringify([...storage]));
   };
 
   useEffect(() => {
-    const dataStorage = JSON.parse(localStorage.getItem('carShop')) || [];
-    updateLocalStorage(dataStorage);
-    localStorage.setItem('carShop', JSON.stringify([...dataStorage]));
-    totalValueCart(dataStorage);
     setTotalCard(quantity * Number(price));
+    updateLocalStorage(dataStorage);
+    totalValueCart(dataStorage);
   }, [quantity, totalCard]);
 
   return (

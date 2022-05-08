@@ -9,12 +9,22 @@ const Customer = () => {
   const [products, setProducts] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
 
-  useEffect(async () => {
-    const dataStorage = JSON.parse(localStorage.getItem('carShop'));
-    if (dataStorage) setProducts(dataStorage);
+  const getProducts = async () => {
     const response = await fetchApiProducts();
     const data = await response.json();
+    const dataStorage = JSON.parse(localStorage.getItem('carShop'));
+    if (dataStorage) {
+      dataStorage.forEach((item) => {
+        data.find((e) => e.id === item.id).quantity = item.quantity;
+      });
+      setProducts(data);
+      return;
+    }
     setProducts(data);
+  };
+
+  useEffect(() => {
+    getProducts();
   }, []);
 
   const mapProducts = () => products.map((product, index) => (
@@ -23,8 +33,8 @@ const Customer = () => {
       key={ product.id }
       name={ product.name }
       price={ Number(product.price) }
-      urlImage={ product.urlImage }
       quantityStorage={ product.quantity || 0 }
+      urlImage={ product.urlImage }
       setTotalCart={ setTotalCart }
     />
   ));
