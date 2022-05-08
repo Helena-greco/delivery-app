@@ -4,7 +4,7 @@ import { Table } from 'react-bootstrap';
 import '../style/TableProducts.css';
 import PropTypes from 'prop-types';
 
-const TableDetailsOrder = ({ itemsCard }) => (
+const TableDetailsOrder = ({ itemsOrder }) => (
   <Table striped bordered hover>
     <thead>
       <tr className="text-center">
@@ -16,7 +16,7 @@ const TableDetailsOrder = ({ itemsCard }) => (
       </tr>
     </thead>
     <tbody>
-      { itemsCard.map((product, index) => (
+      { itemsOrder.map((product, index) => (
         <tr key={ index }>
           <td
             className="text-center"
@@ -25,7 +25,7 @@ const TableDetailsOrder = ({ itemsCard }) => (
               `customer_checkout__element-order-table-item-number-${index}`
             }
           >
-            { index + 1 }
+            { product.id }
           </td>
           <td
             data-testid={
@@ -68,7 +68,7 @@ const TableDetailsOrder = ({ itemsCard }) => (
 );
 
 TableDetailsOrder.propTypes = {
-  itemsCard: PropTypes.shape({
+  itemsOrder: PropTypes.shape({
     length: PropTypes.func,
     map: PropTypes.func,
   }).isRequired,

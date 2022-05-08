@@ -4,7 +4,7 @@ import TableDetailsOrder from '../components/TableDetailsOrder';
 import Header from '../components/Header';
 
 const DetailsOrder = () => {
-  const [itemsCard, setItemsCard] = useState([]);
+  const [itemsOrder, setItemsOrder] = useState([]);
 
   useEffect(() => { console.log('DETALHES ORDEM'); }, []);
 
@@ -17,21 +17,18 @@ const DetailsOrder = () => {
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-id"
           >
-            {/* { `PEDIDO: ${id}` } */}
-            PEDIDO
+            { `PEDIDO: ${id}` }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-date"
           >
-            {/* { date } */}
-            DATA
+            { date }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid={ `seller_order_details__element-
                       order-details-label-delivery-status` }
           >
-            {/* { statusOrder } */}
-            STATUS
+            { statusOrder }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid="seller_order_details__button-preparing-check"
@@ -44,7 +41,7 @@ const DetailsOrder = () => {
             <Button>Saiu Para Entrega</Button>
           </ListGroup.Item>
         </ListGroup>
-        <TableDetailsOrder itemsCard={ itemsCard } setItemsCard={ setItemsCard } />
+        <TableDetailsOrder itemsOrder={ itemsOrder } />
         <Button data-testid="seller_order_details__element-order-total-price">
           Total:
           {
