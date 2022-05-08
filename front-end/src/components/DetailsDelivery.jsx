@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const DetailsDelivery = ({ setEndereço, setNumeroEndereco }) => (
   <Form
@@ -28,5 +29,10 @@ const DetailsDelivery = ({ setEndereço, setNumeroEndereco }) => (
     </Form.Group>
   </Form>
 );
+
+DetailsDelivery.propTypes = {
+  setEndereço: PropTypes.func.isRequired,
+  setNumeroEndereco: PropTypes.func.isRequired,
+};
 
 export default DetailsDelivery;

@@ -12,13 +12,7 @@ const CheckoutCustomer = () => {
   const [endereco, setEndereço] = useState([]);
   const [numeroEndereco, setNumeroEndereco] = useState([]);
   const navigate = useNavigate();
-  
-  const completeOrder = async () => {
-    const response = await fetchApiCreateOrder(order);
-    const data = await response.json();
-    navigate(`/customer/orders/${data}`)
-  }
-  
+
   const totalPriceCard = itemsCard.reduce((total, item) => total + item.totalCard, 0);
   const order = {
     userId: 2,
@@ -26,8 +20,14 @@ const CheckoutCustomer = () => {
     totalPrice: totalPriceCard,
     deliveryAddress: endereco,
     deliveryNumber: numeroEndereco,
-    status: 'Pendente'
-  }
+    status: 'Pendente',
+  };
+
+  const completeOrder = async () => {
+    const response = await fetchApiCreateOrder(order);
+    const data = await response.json();
+    navigate(`/customer/orders/${data}`);
+  };
 
   return (
     <>

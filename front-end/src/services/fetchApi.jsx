@@ -73,7 +73,7 @@ export const fetchApiCreateOrder = async (order) => {
       total_price: order.totalPrice,
       delivery_address: order.deliveryAddress,
       delivery_number: order.deliveryNumber,
-      status: order.status
+      status: order.status,
     }),
   });
   const response = await fetchCreateOrder;

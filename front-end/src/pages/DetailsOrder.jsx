@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Container, Button, ListGroup } from 'react-bootstrap';
 import TableDetailsOrder from '../components/TableDetailsOrder';
 import Header from '../components/Header';
-import { fetchApiOrders } from '../services/fetchApi';
+import { fetchApiOrderById } from '../services/fetchApi';
 
 const DetailsOrder = () => {
   const [itemsOrder, setItemsOrder] = useState([]);
 
-  useEffect(async () => {
+  const getOrderApi = async () => {
     const response = await fetchApiOrderById();
     const data = await response.json();
-    setItemsOrder(data)
+    setItemsOrder(data);
+  };
+
+  useEffect(() => {
+    getOrderApi();
   }, []);
 
   return (
