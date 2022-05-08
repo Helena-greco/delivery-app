@@ -36,7 +36,6 @@ const createOrderService = async (body) => {
 }
 
 const getOrderByIdService = async (params) => {
-  console.log(params.id);
   try {
     const allSales = await sale.findByPk(params.id);
     return allSales;

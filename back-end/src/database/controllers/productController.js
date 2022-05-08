@@ -14,9 +14,9 @@ const getProducts = async (_req, res) => {
   }
 }
 
-const getOrders = async (_req, res) => {
+const getOrders = async (req, res) => {
   try {
-    const data = await getAllOrders();
+    const data = await getAllOrders(req.params);
     return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json(err);
