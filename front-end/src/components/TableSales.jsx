@@ -14,7 +14,7 @@ const TableProducts = ({ sales }) => (
       </tr>
     </thead>
     <tbody>
-      { sales.length ? sales.map(({ id, status, date, priceTotal }, index) => (
+      { sales.length ? sales.map(({ id, status, saleDate, totalPrice }, index) => (
         <tr key={ index }>
           <td
             className="text-center"
@@ -39,7 +39,7 @@ const TableProducts = ({ sales }) => (
               `customer_orders__element-order-date-${id}`
             }
           >
-            { date }
+            { saleDate }
           </td>
           <td
             className="text-center"
@@ -48,7 +48,7 @@ const TableProducts = ({ sales }) => (
               `customer_orders__element-card-price-${id}`
             }
           >
-            { priceTotal }
+            { totalPrice }
           </td>
         </tr>
       )) : <p>Você não possui pedidos.</p> }
