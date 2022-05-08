@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Container, Button, ListGroup } from 'react-bootstrap';
 import TableDetailsOrder from '../components/TableDetailsOrder';
 import Header from '../components/Header';
+import { fetchApiOrders } from '../services/fetchApi';
 
 const DetailsOrder = () => {
   const [itemsOrder, setItemsOrder] = useState([]);
 
-  useEffect(() => { console.log('DETALHES ORDEM'); }, []);
+  useEffect(async () => {
+    const response = await fetchApiOrders();
+    const data = await response.json();
+    setItemsOrder(data)
+  }, []);
 
   return (
     <>
@@ -17,18 +22,18 @@ const DetailsOrder = () => {
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-id"
           >
-            { `PEDIDO: ${id}` }
+            { `PEDIDO: ${itemsOrder.id}` }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-date"
           >
-            { date }
+            { itemsOrder.date }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid={ `seller_order_details__element-
                       order-details-label-delivery-status` }
           >
-            { statusOrder }
+            { itemsOrder.statusOrder }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid="seller_order_details__button-preparing-check"

@@ -5,10 +5,29 @@ import { Container, Button } from 'react-bootstrap';
 import TableProducts from '../components/TableProducts';
 import Header from '../components/Header';
 import DetailsDelivery from '../components/DetailsDelivery';
+import { fetchApiCreateOrder } from '../services/fetchApi';
 
 const CheckoutCustomer = () => {
   const [itemsCard, setItemsCard] = useState([]);
+  const [endereco, setEndereço] = useState([]);
+  const [numeroEndereco, setNumeroEndereco] = useState([]);
   const navigate = useNavigate();
+  
+  const completeOrder = async () => {
+    const response = await fetchApiCreateOrder(order);
+    const data = await response.json();
+    navigate(`/customer/orders/${data}`)
+  }
+  
+  const totalPriceCard = itemsCard.reduce((total, item) => total + item.totalCard, 0);
+  const order = {
+    userId: 2,
+    sellerId: 2,
+    totalPrice: totalPriceCard,
+    deliveryAddress: endereco,
+    deliveryNumber: numeroEndereco,
+    status: 'Pendente'
+  }
 
   return (
     <>
@@ -21,13 +40,16 @@ const CheckoutCustomer = () => {
         >
           Total:
           {
-            itemsCard.reduce((total, item) => total + item.totalCard, 0)
+            totalPriceCard
               .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
           }
         </Button>
-        <DetailsDelivery />
+        <DetailsDelivery
+          setNumeroEndereco={ setNumeroEndereco }
+          setEndereço={ setEndereço }
+        />
         <Button
-          onClick={ () => navigate(`/customer/orders/1`) }
+          onClick={ completeOrder }
           data-testid="customer_checkout__button-submit-order"
         >
           Finalizar Pedido

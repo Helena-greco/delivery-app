@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-const DetailsDelivery = () => (
+const DetailsDelivery = ({ setEndereço, setNumeroEndereco }) => (
   <Form
     className="card mt-3 pb-3 pt-1 w-50"
     style={ { maxWidth: '500px', minWidth: '300px' } }
@@ -10,7 +10,7 @@ const DetailsDelivery = () => (
       data-testid="customer_checkout__select-seller"
       aria-label="Vendedor Responsável:"
     >
-      <option>Vendedor</option>
+      <option>Fulana Pereira</option>
     </Form.Select>
     <Form.Group className="mb-3" controlId="formBasicAddress">
       <Form.Label>Endereço</Form.Label>
