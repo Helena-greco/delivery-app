@@ -35,4 +35,19 @@ const createOrderService = async (body) => {
   }
 }
 
-module.exports = { getAllProducts, getAllOrders, createOrderService };
+const getOrderByIdService = async (params) => {
+  console.log(params.id);
+  try {
+    const allSales = await sale.findByPk(params.id);
+    return allSales;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = {
+  getAllProducts,
+  getAllOrders,
+  createOrderService,
+  getOrderByIdService,
+};
