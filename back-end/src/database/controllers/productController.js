@@ -26,6 +26,7 @@ const getOrders = async (req, res) => {
 const createOrder = async (req, res) => {
   try {
     const data = await createOrderService(req.body);
+    const { authorization } = req.headers;
     return res.status(201).json(data);
   } catch (err) {
     return res.status(500).json(err);

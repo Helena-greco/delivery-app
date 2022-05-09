@@ -60,12 +60,13 @@ export const fetchApiOrders = async () => {
   return response;
 };
 
-export const fetchApiCreateOrder = async (order) => {
+export const fetchApiCreateOrder = async (order, token) => {
   const fetchCreateOrder = fetch(`http://${URL}:${PORT}/customer/orders`, {
     method: 'POST',
     headers: {
       Accept: appJson,
       'Content-Type': appJson,
+      Authorization: token,
     },
     body: JSON.stringify({
       user_id: order.userId,

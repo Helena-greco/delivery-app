@@ -1,4 +1,5 @@
 const express = require('express');
+const { validateToken } = require('../database/middlewares/validateToken');
 const { getProducts,
   getOrders,
   createOrder,
@@ -10,6 +11,6 @@ router
   .get('/products', getProducts)
   .get('/orders/:id', getOrderById)
   .get('/orders', getOrders)
-  .post('/orders', createOrder);
+  .post('/orders', validateToken, createOrder);
 
 module.exports = { router };

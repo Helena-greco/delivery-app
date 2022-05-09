@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
-
+import DeliveryContext from '../context/deliveryContext';
 import TableProducts from '../components/TableProducts';
 import Header from '../components/Header';
 import DetailsDelivery from '../components/DetailsDelivery';
@@ -9,9 +9,10 @@ import { fetchApiCreateOrder } from '../services/fetchApi';
 
 const CheckoutCustomer = () => {
   const [itemsCard, setItemsCard] = useState([]);
-  const [endereco, setEndereço] = useState([]);
-  const [numeroEndereco, setNumeroEndereco] = useState([]);
+  const [endereco, setEndereço] = useState('');
+  const [numeroEndereco, setNumeroEndereco] = useState('');
   const navigate = useNavigate();
+  const { user } = useContext(DeliveryContext);
 
   const totalPriceCard = itemsCard.reduce((total, item) => total + item.totalCard, 0);
   const order = {
@@ -24,8 +25,9 @@ const CheckoutCustomer = () => {
   };
 
   const completeOrder = async () => {
-    const response = await fetchApiCreateOrder(order);
+    const response = await fetchApiCreateOrder(order, user.token);
     const data = await response.json();
+    if (typeof data === 'object') return;
     navigate(`/customer/orders/${data}`);
   };
 
