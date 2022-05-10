@@ -18,7 +18,11 @@ const CardComponent = ({ id, name, price, urlImage, setTotalCart, quantityStorag
   };
 
   const changeValue = ({ target }) => {
-    setQuantity(Number(target.value));
+    if (target.value < 0) {
+      setQuantity(0);
+    } else {
+      setQuantity(Number(target.value));
+    }
   };
 
   const totalValueCart = (storage) => {
