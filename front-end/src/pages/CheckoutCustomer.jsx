@@ -5,7 +5,11 @@ import DeliveryContext from '../context/deliveryContext';
 import TableProducts from '../components/TableProducts';
 import Header from '../components/Header';
 import DetailsDelivery from '../components/DetailsDelivery';
-import { fetchApiCreateOrder, fetchApiGetSellers, fetchApiCreateSaleProducts } from '../services/fetchApi';
+import {
+  fetchApiCreateOrder,
+  fetchApiGetSellers,
+  fetchApiCreateSaleProducts,
+} from '../services/fetchApi';
 
 const CheckoutCustomer = () => {
   const [itemsCard, setItemsCard] = useState([]);
@@ -31,7 +35,7 @@ const CheckoutCustomer = () => {
     const data = await response.json();
     if (typeof data === 'object') return;
     const items = JSON.parse(localStorage.getItem('carShop'));
-    const newItems = items.map(({id, quantity}) => ({id, quantity, sale_id: data}))
+    const newItems = items.map(({ id, quantity }) => ({ id, quantity, sale_id: data }));
     await fetchApiCreateSaleProducts(newItems, user.token);
     localStorage.removeItem('carShop');
     navigate(`/customer/orders/${data}`);
@@ -39,13 +43,13 @@ const CheckoutCustomer = () => {
 
   const getSellers = async () => {
     const response = await fetchApiGetSellers();
-    const data =  await response.json();
+    const data = await response.json();
     setSellers(data);
     return data;
-  }
+  };
 
   useEffect(() => {
-    getSellers()
+    getSellers();
   }, []);
 
   return (
