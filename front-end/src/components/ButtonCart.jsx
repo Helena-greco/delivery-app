@@ -13,7 +13,7 @@ const ButtonCart = ({ totalCart }) => {
       variant="success"
       data-testid="customer_products__button-cart"
       onClick={ () => { navigate('/customer/checkout'); } }
-      className="position-fixed bottom-0 end-0 m-3 z-index-auto"
+      className="bottom-0 end-0 m-3 z-index-auto"
       style={ { zIndex: 3 } }
       disabled={ totalCart === 0 }
     >

@@ -61,7 +61,6 @@ const getOrderByIdService = async (params) => {
         { model: product, as: 'products', attributes: { exclude: ['id', 'urlImage'] } },
       ],
     });
-    console.log(allSales);
     return allSales;
   } catch (error) {
     console.log(error);

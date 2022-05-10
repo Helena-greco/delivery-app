@@ -16,6 +16,13 @@ const DetailsOrder = () => {
     setItemsOrder(data);
   };
 
+  const toLocaleString = (number) => (
+    Number(number).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    })
+  );
+
   useEffect(getOrderApi, []);
 
   return (
@@ -54,7 +61,7 @@ const DetailsOrder = () => {
         { itemsOrder.products && <TableDetailsOrder itemsOrder={ itemsOrder.products } />}
         <Button data-testid="seller_order_details__element-order-total-price">
           Total:
-          { itemsOrder.totalPrice }
+          { toLocaleString(itemsOrder.totalPrice) }
         </Button>
       </Container>
     </>

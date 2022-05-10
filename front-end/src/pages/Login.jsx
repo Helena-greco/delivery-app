@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Figure, Form, Button, Alert } from 'react-bootstrap';
 import Logo from '../images/one-more-beer-logo.jpeg';
@@ -34,6 +34,11 @@ const Login = () => {
       navigate('/customer/products');
     }
   };
+
+  useEffect(() => {
+    const dataStorage = localStorage.getItem('user');
+    if (dataStorage) navigate('/customer/products');
+  }, []);
 
   const MIN_LENGTH = 6;
   const ALERT = (
