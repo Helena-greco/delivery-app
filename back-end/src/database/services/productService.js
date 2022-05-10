@@ -54,10 +54,11 @@ const createSaleProduct = async (body) => {
 
 const getOrderByIdService = async (params) => {
   try {
-    const allSales = await sale.findAll({
+    const [allSales] = await sale.findAll({
       where: { id: params.id },
+      attributes: { exclude: ['userId', 'sellerId'] },
       include: [
-        { model: product, as: 'products', attributes: { exclude: ['id'] } },
+        { model: product, as: 'products', attributes: { exclude: ['id', 'urlImage'] } },
       ],
     });
     console.log(allSales);

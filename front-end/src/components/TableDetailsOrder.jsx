@@ -59,7 +59,7 @@ const TableDetailsOrder = ({ itemsOrder }) => (
               `customer_checkout__element-order-table-sub-total-${index}`
             }
           >
-            { product.totalPrice }
+            { (product.saleProduct.quantity * product.price) }
           </td>
         </tr>
       ))}
