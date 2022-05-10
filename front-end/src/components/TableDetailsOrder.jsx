@@ -25,7 +25,7 @@ const TableDetailsOrder = ({ itemsOrder }) => (
               `customer_checkout__element-order-table-item-number-${index}`
             }
           >
-            { product.id }
+            { index + 1 }
           </td>
           <td
             data-testid={
@@ -41,7 +41,7 @@ const TableDetailsOrder = ({ itemsOrder }) => (
               `customer_checkout__element-order-table-quantity-${index}`
             }
           >
-            { product.quantity }
+            { product.saleProduct.quantity }
           </td>
           <td
             className="text-center"
@@ -59,7 +59,7 @@ const TableDetailsOrder = ({ itemsOrder }) => (
               `customer_checkout__element-order-table-sub-total-${index}`
             }
           >
-            { product.totalCard }
+            { product.totalPrice }
           </td>
         </tr>
       ))}

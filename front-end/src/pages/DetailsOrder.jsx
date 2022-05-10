@@ -7,12 +7,12 @@ import Header from '../components/Header';
 import { fetchApiOrderById } from '../services/fetchApi';
 
 const DetailsOrder = () => {
-  const [itemsOrder, setItemsOrder] = useState([]);
+  const [itemsOrder, setItemsOrder] = useState(['']);
   const params = useParams();
 
   const getOrderApi = async () => {
     const response = await fetchApiOrderById(params.id);
-    const data = await response.json();
+    const [data] = await response.json();
     setItemsOrder(data);
   };
 
@@ -51,7 +51,7 @@ const DetailsOrder = () => {
             <Button>Saiu Para Entrega</Button>
           </ListGroup.Item>
         </ListGroup>
-        <TableDetailsOrder itemsOrder={ itemsOrder } />
+        <TableDetailsOrder itemsOrder={ itemsOrder.products } />
         <Button data-testid="seller_order_details__element-order-total-price">
           Total:
           { itemsOrder.totalPrice }
