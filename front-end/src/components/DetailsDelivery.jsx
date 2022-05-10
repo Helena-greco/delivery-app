@@ -7,12 +7,6 @@ const DetailsDelivery = ({ setEndereço, setNumeroEndereco }) => (
     className="card mt-3 pb-3 pt-1 w-50"
     style={ { maxWidth: '500px', minWidth: '300px' } }
   >
-    <Form.Select
-      data-testid="customer_checkout__select-seller"
-      aria-label="Vendedor Responsável:"
-    >
-      <option>Fulana Pereira</option>
-    </Form.Select>
     <Form.Group className="mb-3" controlId="formBasicAddress">
       <Form.Label>Endereço</Form.Label>
       <Form.Control

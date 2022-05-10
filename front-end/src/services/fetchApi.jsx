@@ -92,3 +92,29 @@ export const fetchApiOrderById = async (id) => {
   const response = await fetchOrderById;
   return response;
 };
+
+export const fetchApiGetSellers = async () => {
+  const fetchSellers = fetch(`http://${URL}:${PORT}/sellers`, {
+    method: 'GET',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+  });
+  const response = await fetchSellers;
+  return response;
+};
+
+export const fetchApiCreateSaleProducts = async (arrayBody, token) => {
+  const fetchCreateSaleProducts = fetch(`http://${URL}:${PORT}/customer/saleProduct`, {
+    method: 'POST',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+      Authorization: token,
+    },
+    body: JSON.stringify(arrayBody),
+  });
+  const response = await fetchCreateSaleProducts;
+  return response;
+};

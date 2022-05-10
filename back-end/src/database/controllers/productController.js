@@ -2,6 +2,7 @@ const {
   getAllProducts,
   getAllOrders,
   createOrderService,
+  createSaleProduct,
   getOrderByIdService,
  } = require("../services/productService");
 
@@ -26,7 +27,15 @@ const getOrders = async (req, res) => {
 const createOrder = async (req, res) => {
   try {
     const data = await createOrderService(req.body);
-    const { authorization } = req.headers;
+    return res.status(201).json(data);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+}
+
+const createSaleProducts = async (req, res) => {
+  try {
+    const data = await createSaleProduct(req.body);
     return res.status(201).json(data);
   } catch (err) {
     return res.status(500).json(err);
@@ -42,4 +51,4 @@ const getOrderById = async (req, res) => {
   }
 }
 
-module.exports = { getProducts, getOrders, createOrder, getOrderById };
+module.exports = { getProducts, getOrders, createOrder, createSaleProducts, getOrderById };

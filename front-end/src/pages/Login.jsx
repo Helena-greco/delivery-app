@@ -28,9 +28,9 @@ const Login = () => {
     const POST = 200;
     if (result.status === POST) {
       const body = await result.json();
-      const { name, role, token } = body;
-      setUser({ name, email, role, token });
-      localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
+      const { id, name, role, token } = body;
+      setUser({ id, name, email, role, token });
+      localStorage.setItem('user', JSON.stringify({ id, name, email, role, token }));
       navigate('/customer/products');
     }
   };

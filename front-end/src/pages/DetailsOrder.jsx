@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Button, ListGroup } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
-// import TableDetailsOrder from '../components/TableDetailsOrder';
+import TableDetailsOrder from '../components/TableDetailsOrder';
 import Header from '../components/Header';
 import { fetchApiOrderById } from '../services/fetchApi';
 
@@ -51,7 +51,7 @@ const DetailsOrder = () => {
             <Button>Saiu Para Entrega</Button>
           </ListGroup.Item>
         </ListGroup>
-        {/* <TableDetailsOrder itemsOrder={ itemsOrder } /> */}
+        <TableDetailsOrder itemsOrder={ itemsOrder } />
         <Button data-testid="seller_order_details__element-order-total-price">
           Total:
           { itemsOrder.totalPrice }
