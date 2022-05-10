@@ -54,7 +54,13 @@ const createSaleProduct = async (body) => {
 
 const getOrderByIdService = async (params) => {
   try {
-    const allSales = await sale.findByPk(params.id);
+    const allSales = await saleProduct.findAll({
+      where: { sale_id: params.id },
+      include: [
+        { model: product, as: 'products', attributes: { exclude: ['id'] } },
+      ],
+    });
+    console.log(allSales);
     return allSales;
   } catch (error) {
     console.log(error);

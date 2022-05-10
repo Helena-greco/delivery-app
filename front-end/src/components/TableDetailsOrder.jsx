@@ -50,7 +50,7 @@ const TableDetailsOrder = ({ itemsOrder }) => (
               `customer_checkout__element-order-table-unit-price-${index}`
             }
           >
-            { toLocaleString(product.price) }
+            { product.price }
           </td>
           <td
             className="text-center"
@@ -59,7 +59,7 @@ const TableDetailsOrder = ({ itemsOrder }) => (
               `customer_checkout__element-order-table-sub-total-${index}`
             }
           >
-            { toLocaleString(product.totalCard) }
+            { product.totalCard }
           </td>
         </tr>
       ))}
