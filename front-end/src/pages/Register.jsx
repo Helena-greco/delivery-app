@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 import { useNavigate } from 'react-router-dom';
 import { fetchApiRegister } from '../services/fetchApi';
 
@@ -37,16 +38,22 @@ const Register = () => {
     <Alert
       key="danger"
       variant="danger"
-      className="error"
+      className="container-sm error text-center mt-3 w-50"
       data-testid="common_register__element-invalid_register"
+      style={ { maxWidth: '400px', minWidth: '300px' } }
+      onClose={ () => setError(false) }
+      dismissible
     >
       Nome ou email já existentes.
     </Alert>
   );
 
   return (
-    <>
-      <Form className="card mt-3 pb-3 pt-1 container-sm w-50">
+    <Container style={ { marginTop: '100px' } }>
+      <Form
+        className="card mt-3 pb-3 pt-1 container-sm w-50"
+        style={ { maxWidth: '500px', minWidth: '300px' } }
+      >
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Nome</Form.Label>
           <Form.Control
@@ -89,8 +96,12 @@ const Register = () => {
           Cadastrar
         </Button>
       </Form>
+      <p style={ { margin: 'auto', maxWidth: '240px' } }>
+        Já possui uma conta?
+        <a href="/login">Fazer Login</a>
+      </p>
       { error && ALERT }
-    </>
+    </Container>
   );
 };
 

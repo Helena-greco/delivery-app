@@ -35,3 +35,15 @@ export const fetchApiRegister = async (name, email, password) => {
   const response = await fetchRegister;
   return response;
 };
+
+export const fetchApiProducts = async () => {
+  const fetchProducts = fetch(`http://${URL}:${PORT}/customer/products`, {
+    method: 'GET',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+  });
+  const response = await fetchProducts;
+  return response;
+};

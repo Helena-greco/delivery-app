@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
+import { Container, Figure, Form, Button, Alert } from 'react-bootstrap';
+import Logo from '../images/one-more-beer-logo.jpeg';
 import { fetchApi } from '../services/fetchApi';
+import DeliveryContext from '../context/deliveryContext';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setUser } = useContext(DeliveryContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +27,10 @@ const Login = () => {
     }
     const POST = 200;
     if (result.status === POST) {
+      const body = await result.json();
+      const { name, role, token } = body;
+      setUser({ name, email, role, token });
+      localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
       navigate('/customer/products');
     }
   };
@@ -35,16 +40,30 @@ const Login = () => {
     <Alert
       key="danger"
       variant="danger"
-      className="error"
+      className="container-sm error text-center mt-3 w-50"
       data-testid="common_login__element-invalid-email"
+      style={ { maxWidth: '400px', minWidth: '300px' } }
+      onClose={ () => setError(false) }
+      dismissible
     >
       Login ou senha incorretos.
     </Alert>
   );
 
   return (
-    <>
-      <Form className="card mt-3 pb-3 pt-1 container-sm w-50">
+    <Container style={ { marginTop: '20px' } }>
+      <Figure className="container-sm text-center">
+        <Figure.Image
+          width={ 230 }
+          alt="one-more-beer-logo"
+          src={ Logo }
+          className="rounded-3"
+        />
+      </Figure>
+      <Form
+        className="card mt-3 pb-3 pt-1 container-sm w-50"
+        style={ { maxWidth: '400px', minWidth: '300px' } }
+      >
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Login</Form.Label>
           <Form.Control
@@ -84,7 +103,7 @@ const Login = () => {
         </Button>
       </Form>
       { error && ALERT }
-    </>
+    </Container>
   );
 };
 
