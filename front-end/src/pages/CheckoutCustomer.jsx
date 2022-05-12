@@ -15,10 +15,9 @@ const CheckoutCustomer = () => {
   const [itemsCard, setItemsCard] = useState([]);
   const [endereco, setEndereço] = useState('');
   const [numeroEndereco, setNumeroEndereco] = useState('');
-  const [sellers, setSellers] = useState([]);
   const [sellerSelected, setSellerSelected] = useState(0);
   const navigate = useNavigate();
-  const { user } = useContext(DeliveryContext);
+  const { user, sellers, setSellers } = useContext(DeliveryContext);
 
   const totalPriceCard = itemsCard.reduce((total, item) => total + item.totalCard, 0);
   const order = {

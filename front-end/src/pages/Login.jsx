@@ -36,8 +36,12 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const dataStorage = localStorage.getItem('user');
-    if (dataStorage) navigate('/customer/products');
+    const dataStorage = JSON.parse(localStorage.getItem('user'));
+    if (dataStorage) {
+      const { id, name, role, token } = dataStorage;
+      setUser({ id, name, role, token });
+      navigate('/customer/products');
+    }
   }, []);
 
   const MIN_LENGTH = 6;
