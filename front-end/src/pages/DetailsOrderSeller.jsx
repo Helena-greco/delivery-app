@@ -43,7 +43,8 @@ const DetailsOrderSeller = () => {
             { itemsOrder.saleDate }
           </ListGroup.Item>
           <ListGroup.Item
-            data-testid="seller_order_details__element-order-details-label-delivery-status"
+            data-testid="seller_order_details__
+              element-order-details-label-delivery-status"
           >
             { itemsOrder.status }
           </ListGroup.Item>
