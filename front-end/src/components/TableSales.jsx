@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import '../style/TableProducts.css';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 const TableProducts = ({ sales }) => {
   const navigate = useNavigate();
@@ -11,6 +12,13 @@ const TableProducts = ({ sales }) => {
   const navigateForSaleDetails = (id) => {
     navigate(`/customer/orders/${id}`);
   };
+
+  const toLocaleString = (number) => (
+    Number(number).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    })
+  );
 
   return (
     <Table striped bordered hover>
@@ -51,7 +59,7 @@ const TableProducts = ({ sales }) => {
                 `customer_orders__element-order-date-${id}`
               }
             >
-              { saleDate }
+              { moment(saleDate).format('L') }
             </td>
             <td
               className="text-center"
@@ -60,7 +68,7 @@ const TableProducts = ({ sales }) => {
                 `customer_orders__element-card-price-${id}`
               }
             >
-              { totalPrice }
+              { toLocaleString(totalPrice) }
             </td>
           </tr>
         )) : <p>Você não possui pedidos.</p> }
