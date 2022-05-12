@@ -15,7 +15,7 @@ const ButtonCart = ({ totalCart }) => {
       onClick={ () => { navigate('/customer/checkout'); } }
       className="bottom-0 end-0 m-3 z-index-auto"
       style={ { zIndex: 3 } }
-      disabled={ totalCart === 0 }
+      disabled={ totalCart < 1 }
     >
       <span data-testid="customer_products__checkout-bottom-value">
         {`Ver Carrinho: ${totalCart
