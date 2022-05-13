@@ -18,17 +18,6 @@ const getAllOrders = async () => {
   }
 }
 
-const getAllOrdersSellerService = async (params) => {
-  try {
-    const allSales = await sale.findAll({
-      where: { seller_id: params.id },
-    });;
-    return allSales;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 const createOrderService = async (body) => {
   try {
     const create = await sale.create({
@@ -82,5 +71,4 @@ module.exports = {
   createOrderService,
   createSaleProduct,
   getOrderByIdService,
-  getAllOrdersSellerService,
 };
