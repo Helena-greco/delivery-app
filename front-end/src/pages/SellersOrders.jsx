@@ -25,7 +25,7 @@ const SellersOrders = () => {
         <button
           type="button"
           key={ sale.id }
-          onClick={ () => navigate(`/customer/orders/${sale.id}`) }
+          onClick={ () => navigate(`/seller/orders/${sale.id}`) }
         >
           <div>
             <p data-testid={ `seller_orders__element-order-id-${sale.id}` }>Pedidos</p>

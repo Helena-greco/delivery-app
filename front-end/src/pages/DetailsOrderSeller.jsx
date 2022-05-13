@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Button, ListGroup } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
 import TableDetailsOrder from '../components/TableDetailsOrder';
 import HeaderSeller from '../components/HeaderSeller';
-import { fetchApiOrderSellerById } from '../services/fetchApi';
+import { fetchApiOrderById } from '../services/fetchApi';
 
 const DetailsOrderSeller = () => {
   // Necessário verificar essa página
@@ -12,7 +13,7 @@ const DetailsOrderSeller = () => {
   const params = useParams();
 
   const getOrderApi = async () => {
-    const response = await fetchApiOrderSellerById(params.id);
+    const response = await fetchApiOrderById(params.id);
     const data = await response.json();
     setItemsOrder(data);
   };
@@ -30,11 +31,7 @@ const DetailsOrderSeller = () => {
     <>
       <HeaderSeller />
       <Container>
-        <h1
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          Pedidos
-        </h1>
+        <h1>Detalhes do pedido</h1>
         <ListGroup horizontal="md" className="my-2">
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-id"
@@ -44,7 +41,7 @@ const DetailsOrderSeller = () => {
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-date"
           >
-            { itemsOrder.saleDate }
+            { moment(itemsOrder.saleDate).format('L') }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid="seller_order_details__

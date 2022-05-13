@@ -6,6 +6,7 @@ import Customer from '../pages/Customer';
 import CheckoutCustomer from '../pages/CheckoutCustomer';
 import Orders from '../pages/Orders';
 import DetailsOrder from '../pages/DetailsOrder';
+import DetailsOrderSeller from '../pages/DetailsOrderSeller';
 import SellersOrders from '../pages/SellersOrders';
 
 const AppRoutes = () => (
@@ -18,6 +19,7 @@ const AppRoutes = () => (
     <Route exact path="/customer/orders" element={ <Orders /> } />
     <Route exact path="/customer/orders/:id" element={ <DetailsOrder /> } />
     <Route exact path="/seller/orders" element={ <SellersOrders /> } />
+    <Route exact path="/seller/orders/:id" element={ <DetailsOrderSeller /> } />
   </Routes>
 );
 
