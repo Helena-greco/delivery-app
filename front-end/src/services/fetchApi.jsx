@@ -131,3 +131,15 @@ export const fetchApiCreateSaleProducts = async (arrayBody, token) => {
   const response = await fetchCreateSaleProducts;
   return response;
 };
+
+export const fetchAllUsers = async () => {
+  const fetchSellers = fetch(`http://${URL}:${PORT}/users`, {
+    method: 'GET',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+  });
+  const response = await fetchSellers;
+  return response;
+};

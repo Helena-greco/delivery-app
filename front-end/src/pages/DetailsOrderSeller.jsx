@@ -11,7 +11,7 @@ const DetailsOrderSeller = () => {
   // Necessário verificar essa página
   const [itemsOrder, setItemsOrder] = useState(['']);
   const params = useParams();
-
+  const STATUS = 'seller_order_details__element-order-details-label-delivery-status';
   const getOrderApi = async () => {
     const response = await fetchApiOrderById(params.id);
     const data = await response.json();
@@ -44,8 +44,7 @@ const DetailsOrderSeller = () => {
             { moment(itemsOrder.saleDate).format('L') }
           </ListGroup.Item>
           <ListGroup.Item
-            data-testid="seller_order_details__
-              element-order-details-label-delivery-status"
+            data-testid={ STATUS }
           >
             { itemsOrder.status }
           </ListGroup.Item>
