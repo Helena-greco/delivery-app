@@ -28,7 +28,7 @@ const DetailsOrderSeller = () => {
 
   const inTransitOrder = async () => {
     const { id } = itemsOrder;
-    const response = await fetchApiUpdateOrderStatusById(id, 'Em trânsito');
+    const response = await fetchApiUpdateOrderStatusById(id, 'Em Trânsito');
     const data = await response.json();
     setItemsOrder({ ...itemsOrder, data });
   };
@@ -67,6 +67,7 @@ const DetailsOrderSeller = () => {
             <Button
               data-testid="seller_order_details__button-preparing-check"
               onClick={ toPrepareOrder }
+              disabled={ itemsOrder.status !== 'Pendente' }
             >
               Preparar Pedido
             </Button>
@@ -75,6 +76,7 @@ const DetailsOrderSeller = () => {
             <Button
               data-testid="seller_order_details__button-dispatch-check"
               onClick={ inTransitOrder }
+              disabled={ itemsOrder.status === 'Em Trânsito' }
             >
               Saiu Para Entrega
             </Button>
