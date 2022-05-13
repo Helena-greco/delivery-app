@@ -30,14 +30,14 @@ const TableDetailsOrder = ({ itemsOrder }) => {
               className="text-center"
               width={ 1 }
               data-testid={
-                `customer_checkout__element-order-table-item-number-${index}`
+                `customer_order__element-order-table-item-number-${index}`
               }
             >
               { index + 1 }
             </td>
             <td
               data-testid={
-                `customer_checkout__element-order-table-name-${index}`
+                `customer_order__element-order-table-name-${index}`
               }
             >
               { product.name }
@@ -46,7 +46,7 @@ const TableDetailsOrder = ({ itemsOrder }) => {
               className="text-center align-center"
               width={ 150 }
               data-testid={
-                `customer_checkout__element-order-table-quantity-${index}`
+                `customer_order__element-order-table-quantity-${index}`
               }
             >
               { product.saleProduct.quantity }
@@ -55,7 +55,7 @@ const TableDetailsOrder = ({ itemsOrder }) => {
               className="text-center"
               width={ 150 }
               data-testid={
-                `customer_checkout__element-order-table-unit-price-${index}`
+                `customer_order__element-order-table-unit-price-${index}`
               }
             >
               { toLocaleString(product.price) }

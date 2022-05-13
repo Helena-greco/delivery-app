@@ -59,7 +59,7 @@ const TableProducts = ({ sales }) => {
                 `customer_orders__element-order-date-${id}`
               }
             >
-              { moment(saleDate).format('L') }
+              { moment(saleDate).format('DD/MM/YYYY') }
             </td>
             <td
               className="text-center"
