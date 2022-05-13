@@ -2,7 +2,7 @@ const { getAllOrdersSellerService } = require('../services/sellerService');
 
 const getAllOrdersSeller = async (req, res) => {
   try {
-    const seller = await getAllOrdersSellerService(req.params);
+    const seller = await getAllOrdersSellerService();
     return res.status(200).json(seller);
   } catch (error) {
     return res.status(500).json(err);

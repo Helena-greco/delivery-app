@@ -1,10 +1,8 @@
 const { sale } = require('../models');
 
-const getAllOrdersSellerService = async (body) => {
+const getAllOrdersSellerService = async () => {
   try {
-    const allSales = await sale.findAll({
-      where: { seller_id: body.id },
-    });;
+    const allSales = await sale.findAll();
     return allSales;
   } catch (error) {
     console.log(error);

@@ -52,20 +52,10 @@ const getOrderById = async (req, res) => {
   }
 }
 
-const getAllOrdersSeller = async (req, res) => {
-  try {
-    const data = await getAllOrdersSellerService(req.params);
-    return res.status(200).json(data);
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-}
-
 module.exports = {
   getProducts,
   getOrders,
   createOrder,
   createSaleProducts,
   getOrderById,
-  getAllOrdersSeller,
 };
