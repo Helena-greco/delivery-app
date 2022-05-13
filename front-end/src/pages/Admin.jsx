@@ -14,7 +14,7 @@ const Orders = () => {
   };
 
   const newUser = {
-    name,
+    newName,
     email,
     password,
     role,
@@ -26,32 +26,26 @@ const Orders = () => {
     <>
       <Header />
       <Container>
-        <div>
-          <input
-            type="text"
-            data-testid="admin_manage__input-email"
-          >
-            { newUser.name }
-          </input>
-          <input
-            type="text"
-            data-testid="admin_manage__input-email"
-          >
-            { newUser.email }
-          </input>
-          <input
-            type="text"
-            data-testid="admin_manage__input-password"
-          >
-            { newUser.password }
-          </input>
-          <input
-            type="text"
-            data-testid="admin_manage__button-register"
-          >
-            { newUser.type }
-          </input>
-        </div>
+        <input
+          type="text"
+          data-testid="admin_manage__input-email"
+          value={ newUser.newName }
+        />
+        <input
+          type="text"
+          data-testid="admin_manage__input-email"
+          value={ newUser.email }
+        />
+        <input
+          type="text"
+          data-testid="admin_manage__input-password"
+          value={ newUser.password }
+        />
+        <input
+          type="text"
+          data-testid="admin_manage__button-register"
+          value={ newUser.role }
+        />
         <TableUsers users={ users } />
       </Container>
     </>
