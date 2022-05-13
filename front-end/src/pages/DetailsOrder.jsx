@@ -4,7 +4,11 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import TableDetailsOrder from '../components/TableDetailsOrder';
 import Header from '../components/Header';
-import { fetchApiOrderById, fetchApiGetSellers, fetchApiUpdateOrderStatusById } from '../services/fetchApi';
+import {
+  fetchApiOrderById,
+  fetchApiGetSellers,
+  fetchApiUpdateOrderStatusById,
+} from '../services/fetchApi';
 import DeliveryContext from '../context/deliveryContext';
 
 const DetailsOrder = () => {
@@ -40,7 +44,7 @@ const DetailsOrder = () => {
     const response = await fetchApiUpdateOrderStatusById(id, 'Entregue');
     const data = await response.json();
     setItemsOrder({ ...itemsOrder, data });
-  }
+  };
 
   const toLocaleString = (number) => (
     Number(number).toLocaleString('pt-BR', {
