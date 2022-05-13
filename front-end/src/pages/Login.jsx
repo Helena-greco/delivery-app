@@ -31,11 +31,9 @@ const Login = () => {
       const { id, name, role, token } = body;
       setUser({ id, name, email, role, token });
       localStorage.setItem('user', JSON.stringify({ id, name, email, role, token }));
-      if (role === 'seller') {
-        navigate('/seller/orders');
-      } else {
-        navigate('/customer/products');
-      }
+      if (role === 'customer') navigate('/customer/products');
+      if (role === 'administrator') navigate('/admin/manage');
+      if (role === 'seller') navigate('/seller/orders');
     }
   };
 
@@ -44,7 +42,6 @@ const Login = () => {
     if (dataStorage) {
       const { id, name, role, token } = dataStorage;
       setUser({ id, name, role, token });
-      navigate('/customer/products');
     }
   };
 

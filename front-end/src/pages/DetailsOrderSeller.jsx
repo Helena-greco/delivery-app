@@ -41,22 +41,26 @@ const DetailsOrderSeller = () => {
           <ListGroup.Item
             data-testid="seller_order_details__element-order-details-label-order-date"
           >
-            { moment(itemsOrder.saleDate).format('L') }
+            { moment(itemsOrder.saleDate).format('DD/MM/YYYY') }
           </ListGroup.Item>
           <ListGroup.Item
             data-testid={ STATUS }
           >
             { itemsOrder.status }
           </ListGroup.Item>
-          <ListGroup.Item
-            data-testid="seller_order_details__button-preparing-check"
-          >
-            <Button>Preparar Pedido</Button>
+          <ListGroup.Item>
+            <Button
+              data-testid="seller_order_details__button-preparing-check"
+            >
+              Preparar Pedido
+            </Button>
           </ListGroup.Item>
-          <ListGroup.Item
-            data-testid="seller_order_details__button-dispatch-check"
-          >
-            <Button>Saiu Para Entrega</Button>
+          <ListGroup.Item>
+            <Button
+              data-testid="seller_order_details__button-dispatch-check"
+            >
+              Saiu Para Entrega
+            </Button>
           </ListGroup.Item>
         </ListGroup>
         { itemsOrder.products && <TableDetailsOrder itemsOrder={ itemsOrder.products } />}

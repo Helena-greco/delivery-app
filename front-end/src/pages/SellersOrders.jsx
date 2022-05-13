@@ -46,7 +46,7 @@ const SellersOrders = () => {
             <h6
               data-testid={ `seller_orders__element-order-date-${sale.id}` }
             >
-              { moment(sale.saleDate).format('L') }
+              { moment(sale.saleDate).format('DD/MM/YYYY') }
             </h6>
             <h6
               data-testid={ `seller_orders__element-card-price-${sale.id}` }
