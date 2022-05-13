@@ -93,7 +93,7 @@ export const fetchApiOrderById = async (id) => {
   return response;
 };
 
-export const fetchApiOrderSellerById = async (id) => {
+export const fetchApiOrderSellerById = async () => {
   const fetchOrderSellerById = fetch(`http://${URL}:${PORT}/seller/orders/`, {
     method: 'GET',
     headers: {

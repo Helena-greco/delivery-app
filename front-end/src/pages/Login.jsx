@@ -32,21 +32,23 @@ const Login = () => {
       setUser({ id, name, email, role, token });
       localStorage.setItem('user', JSON.stringify({ id, name, email, role, token }));
       if (role === 'seller') {
-        navigate(`/seller/orders/${id}`);
+        navigate('/seller/orders');
       } else {
         navigate('/customer/products');
       }
     }
   };
 
-  useEffect(() => {
+  const userIsOn = () => {
     const dataStorage = JSON.parse(localStorage.getItem('user'));
     if (dataStorage) {
       const { id, name, role, token } = dataStorage;
       setUser({ id, name, role, token });
       navigate('/customer/products');
     }
-  }, []);
+  };
+
+  useEffect(userIsOn, []);
 
   const MIN_LENGTH = 6;
   const ALERT = (

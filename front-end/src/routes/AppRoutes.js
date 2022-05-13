@@ -17,7 +17,7 @@ const AppRoutes = () => (
     <Route exact path="/customer/checkout" element={ <CheckoutCustomer /> } />
     <Route exact path="/customer/orders" element={ <Orders /> } />
     <Route exact path="/customer/orders/:id" element={ <DetailsOrder /> } />
-    <Route exact path="/seller/orders/:id" element={ <SellersOrders /> } />
+    <Route exact path="/seller/orders" element={ <SellersOrders /> } />
   </Routes>
 );
 

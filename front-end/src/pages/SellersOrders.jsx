@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 
 import { fetchApiOrderSellerById } from '../services/fetchApi';
 import HeaderSeller from '../components/HeaderSeller';
 
 const SellersOrders = () => {
   const [sales, setSales] = useState([]);
-  const params = useParams();
+  const navigate = useNavigate();
 
   const getSales = async () => {
-    console.log(params);
-    const response = await fetchApiOrderSellerById(params.id);
+    const response = await fetchApiOrderSellerById();
     const data = await response.json();
     console.log(data);
     setSales(data);
@@ -23,7 +22,11 @@ const SellersOrders = () => {
     <>
       <HeaderSeller />
       { sales.map((sale) => (
-        <div key={ sale.id }>
+        <button
+          type="button"
+          key={ sale.id }
+          onClick={ () => navigate(`/customer/orders/${sale.id}`) }
+        >
           <div>
             <p data-testid={ `seller_orders__element-order-id-${sale.id}` }>Pedidos</p>
             <h6
@@ -56,7 +59,7 @@ const SellersOrders = () => {
           >
             { `${sale.deliveryAddress}, ${sale.deliveryNumber}` }
           </p>
-        </div>
+        </button>
       ))}
     </>
   );
