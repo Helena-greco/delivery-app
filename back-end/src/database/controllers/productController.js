@@ -4,6 +4,7 @@ const {
   createOrderService,
   createSaleProduct,
   getOrderByIdService,
+  getAllOrdersSellerService,
  } = require("../services/productService");
 
 const getProducts = async (_req, res) => {
@@ -51,4 +52,20 @@ const getOrderById = async (req, res) => {
   }
 }
 
-module.exports = { getProducts, getOrders, createOrder, createSaleProducts, getOrderById };
+const getAllOrdersSeller = async (req, res) => {
+  try {
+    const data = await getAllOrdersSellerService(req.params);
+    return res.status(200).json(data);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+}
+
+module.exports = {
+  getProducts,
+  getOrders,
+  createOrder,
+  createSaleProducts,
+  getOrderById,
+  getAllOrdersSeller,
+};

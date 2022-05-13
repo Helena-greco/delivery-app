@@ -24,7 +24,7 @@ const HeaderSeller = () => {
               href="/seller/orders"
               data-testid="customer_products__element-navbar-link-orders"
             >
-              Meus pedidos
+              Pedidos
             </Nav.Link>
           </Nav>
           <Nav>

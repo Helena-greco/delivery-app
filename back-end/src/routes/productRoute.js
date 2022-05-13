@@ -4,6 +4,7 @@ const { getProducts,
   getOrders,
   createOrder,
   createSaleProducts,
+  getAllOrdersSeller,
   getOrderById } = require('../database/controllers/productController');
 
 const router = express.Router();

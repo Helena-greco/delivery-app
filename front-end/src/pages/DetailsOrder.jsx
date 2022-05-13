@@ -42,7 +42,11 @@ const DetailsOrder = () => {
     <>
       <Header />
       <Container>
-        <h1>Detalhe do pedido</h1>
+        <h1
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          Detalhe do pedido
+        </h1>
         <ListGroup horizontal="md" className="my-2">
           <ListGroup.Item
             data-testid="customer_order_details__element-order-details-label-order-id"
