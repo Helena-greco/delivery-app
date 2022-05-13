@@ -31,7 +31,11 @@ const Login = () => {
       const { id, name, role, token } = body;
       setUser({ id, name, email, role, token });
       localStorage.setItem('user', JSON.stringify({ id, name, email, role, token }));
-      navigate('/customer/products');
+      if (role === 'seller') {
+        navigate(`/seller/orders/${id}`);
+      } else {
+        navigate('/customer/products');
+      }
     }
   };
 
