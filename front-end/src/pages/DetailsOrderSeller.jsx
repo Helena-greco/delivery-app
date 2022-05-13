@@ -5,17 +5,32 @@ import moment from 'moment';
 
 import TableDetailsOrder from '../components/TableDetailsOrder';
 import HeaderSeller from '../components/HeaderSeller';
-import { fetchApiOrderById } from '../services/fetchApi';
+import { fetchApiOrderById, fetchApiUpdateOrderStatusById } from '../services/fetchApi';
 
 const DetailsOrderSeller = () => {
   // Necessário verificar essa página
-  const [itemsOrder, setItemsOrder] = useState(['']);
+  const [itemsOrder, setItemsOrder] = useState({});
   const params = useParams();
   const STATUS = 'seller_order_details__element-order-details-label-delivery-status';
+
   const getOrderApi = async () => {
     const response = await fetchApiOrderById(params.id);
     const data = await response.json();
     setItemsOrder(data);
+  };
+
+  const toPrepareOrder = async () => {
+    const { id } = itemsOrder;
+    const response = await fetchApiUpdateOrderStatusById(id, 'Preparando');
+    const data = await response.json();
+    setItemsOrder({ ...itemsOrder, data });
+  };
+
+  const inTransitOrder = async () => {
+    const { id } = itemsOrder;
+    const response = await fetchApiUpdateOrderStatusById(id, 'Em trânsito');
+    const data = await response.json();
+    setItemsOrder({ ...itemsOrder, data });
   };
 
   const toLocaleString = (number) => (
@@ -25,7 +40,7 @@ const DetailsOrderSeller = () => {
     })
   );
 
-  useEffect(getOrderApi, []);
+  useEffect(getOrderApi, [itemsOrder]);
 
   return (
     <>
@@ -51,6 +66,7 @@ const DetailsOrderSeller = () => {
           <ListGroup.Item>
             <Button
               data-testid="seller_order_details__button-preparing-check"
+              onClick={ toPrepareOrder }
             >
               Preparar Pedido
             </Button>
@@ -58,6 +74,7 @@ const DetailsOrderSeller = () => {
           <ListGroup.Item>
             <Button
               data-testid="seller_order_details__button-dispatch-check"
+              onClick={ inTransitOrder }
             >
               Saiu Para Entrega
             </Button>

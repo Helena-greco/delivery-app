@@ -102,8 +102,24 @@ export const fetchApiOrderSellerById = async () => {
     },
   });
   const response = await fetchOrderSellerById;
-  console.log(response);
   return response;
+};
+
+export const fetchApiUpdateOrderStatusById = async (id, status) => {
+  try {
+    const fetchUpdateOrderStatusById = fetch(`http://${URL}:${PORT}/seller/orders/${id}`, {
+      method: 'PATCH',
+      headers: {
+        Accept: appJson,
+        'Content-Type': appJson,
+      },
+      body: JSON.stringify({ status }),
+    });
+    const response = await fetchUpdateOrderStatusById;
+    return response;
+  } catch (err) {
+    console.log(err.message);
+  }
 };
 
 export const fetchApiGetSellers = async () => {

@@ -5,8 +5,8 @@ const path = require('path');
 const app = express();
 
 app.use(express.json());
-app.use('/images', express.static(path.resolve('public')));
 app.use(cors());
+app.use('/images', express.static(path.resolve('public')));
 
 const loginRouter = require('../routes/loginRoute');
 const registerRouter = require('../routes/registerRoute');

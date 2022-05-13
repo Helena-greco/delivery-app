@@ -12,7 +12,6 @@ const SellersOrders = () => {
   const getSales = async () => {
     const response = await fetchApiOrderSellerById();
     const data = await response.json();
-    console.log(data);
     setSales(data);
   };
 
