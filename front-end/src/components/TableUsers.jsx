@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import '../style/TableProducts.css';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 const TableUsers = ({ sales }) => {
   const navigate = useNavigate();
@@ -12,13 +11,6 @@ const TableUsers = ({ sales }) => {
   const navigateForSaleDetails = (id) => {
     navigate(`/customer/orders/${id}`);
   };
-
-  const toLocaleString = (number) => (
-    Number(number).toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    })
-  );
 
   return (
     <Table striped bordered hover>
