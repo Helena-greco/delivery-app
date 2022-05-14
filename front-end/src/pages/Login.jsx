@@ -18,6 +18,13 @@ const Login = () => {
     return regexEmail.test(userEmail);
   };
 
+  const navigateByRole = () => {
+    const dataStorage = JSON.parse(localStorage.getItem('user'));
+    if (dataStorage.role === 'customer') navigate('/customer/products');
+    if (dataStorage.role === 'administrator') navigate('/admin/manage');
+    if (dataStorage.role === 'seller') navigate('/seller/orders');
+  };
+
   const handleClick = async (event) => {
     event.preventDefault();
     const result = await fetchApi(email, password);
@@ -31,17 +38,15 @@ const Login = () => {
       const { id, name, role, token } = body;
       setUser({ id, name, email, role, token });
       localStorage.setItem('user', JSON.stringify({ id, name, email, role, token }));
-      if (role === 'customer') navigate('/customer/products');
-      if (role === 'administrator') navigate('/admin/manage');
-      if (role === 'seller') navigate('/seller/orders');
+      navigateByRole();
     }
   };
 
   const userIsOn = () => {
     const dataStorage = JSON.parse(localStorage.getItem('user'));
     if (dataStorage) {
-      const { id, name, role, token } = dataStorage;
-      setUser({ id, name, role, token });
+      setUser(dataStorage);
+      navigateByRole();
     }
   };
 
