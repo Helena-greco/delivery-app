@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Alert } from 'react-bootstrap';
 import HeaderAdmin from '../components/HeaderAdmin';
-import { fetchAllUsers } from '../services/fetchApi';
+import { fetchAllUsers, fetchApiAdminRegister } from '../services/fetchApi';
 import TableUsers from '../components/TableUsers';
 
 const Orders = () => {
@@ -9,7 +9,22 @@ const Orders = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('administrator');
+  const [error, setError] = useState(false);
+
+  const ALERT = (
+    <Alert
+      key="danger"
+      variant="danger"
+      className="container-sm error text-center mt-3 w-50"
+      data-testid="common_register__element-invalid_register"
+      style={ { maxWidth: '400px', minWidth: '300px' } }
+      onClose={ () => setError(false) }
+      dismissible
+    >
+      Nome ou email já existentes.
+    </Alert>
+  );
 
   const getUsers = async () => {
     const response = await fetchAllUsers();
@@ -25,13 +40,18 @@ const Orders = () => {
 
   const handleClick = async (event) => {
     event.preventDefault();
-    const result = await fetchApiRegister(name, email, password);
-
+    const result = await fetchApiAdminRegister(name, email, password, role);
+    const data = await result.json();
+    getUsers();
     const ERROR = 409;
-    if (result.status === ERROR) setError(true);
-
+    if (result.status === ERROR) {
+      setError(true);
+    }
     const STATUS_CODE_CREATED = 201;
-    if (result.status === STATUS_CODE_CREATED) setError(false);
+    if (result.status === STATUS_CODE_CREATED) {
+      setError(false);
+    }
+    return data;
   };
 
   useEffect(getUsers, []);
@@ -70,7 +90,7 @@ const Orders = () => {
           placeholder="role"
           onChange={ ({ target }) => setRole(target.value) }
         >
-          <option value="administrador">administrator</option>
+          <option value="administrador" selected>administrator</option>
           <option value="seller">seller</option>
           <option value="customer">customer</option>
         </select>
@@ -89,6 +109,7 @@ const Orders = () => {
           Cadastrar
         </Button>
         { users && <TableUsers users={ users } /> }
+        { error && ALERT }
       </Container>
     </>
   );

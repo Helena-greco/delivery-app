@@ -159,3 +159,22 @@ export const fetchAllUsers = async () => {
   const response = await fetchSellers;
   return response;
 };
+
+export const fetchApiAdminRegister = async (name, email, password, role) => {
+  console.log(role);
+  const fetchRegister = fetch(`http://${URL}:${PORT}/admin/register`, {
+    method: 'POST',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      role,
+    }),
+  });
+  const response = await fetchRegister;
+  return response;
+};
