@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Customer from '../pages/Customer';
+import Admin from '../pages/Admin';
 import CheckoutCustomer from '../pages/CheckoutCustomer';
 import Orders from '../pages/Orders';
 import DetailsOrder from '../pages/DetailsOrder';
@@ -20,6 +21,7 @@ const AppRoutes = () => (
     <Route exact path="/customer/orders/:id" element={ <DetailsOrder /> } />
     <Route exact path="/seller/orders" element={ <SellersOrders /> } />
     <Route exact path="/seller/orders/:id" element={ <DetailsOrderSeller /> } />
+    <Route exact path="/admin/manage" element={ <Admin /> } />
   </Routes>
 );
 

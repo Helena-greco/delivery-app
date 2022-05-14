@@ -149,7 +149,7 @@ export const fetchApiCreateSaleProducts = async (arrayBody, token) => {
 };
 
 export const fetchAllUsers = async () => {
-  const fetchSellers = fetch(`http://${URL}:${PORT}/users`, {
+  const fetchSellers = fetch(`http://${URL}:${PORT}/admin`, {
     method: 'GET',
     headers: {
       Accept: appJson,

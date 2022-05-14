@@ -13,12 +13,14 @@ const registerRouter = require('../routes/registerRoute');
 const productRouter = require('../routes/productRoute');
 const userRouter = require('../routes/userRoute');
 const sellerRouter = require('../routes/sellerRoute');
+const adminRouter = require('../routes/adminRoute');
 
 app.use('/login', loginRouter.router);
 app.use('/register', registerRouter.router);
 app.use('/customer', productRouter.router);
 app.use('/sellers', userRouter.router);
 app.use('/seller', sellerRouter.router);
+app.use('/admin', adminRouter.router)
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 

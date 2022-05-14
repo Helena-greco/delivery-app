@@ -1,17 +1,9 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 
-import '../style/TableProducts.css';
 import PropTypes from 'prop-types';
 
-const TableUsers = ({ sales }) => {
-  const navigate = useNavigate();
-
-  const navigateForSaleDetails = (id) => {
-    navigate(`/customer/orders/${id}`);
-  };
-
+const TableUsers = ({ users }) => {
   return (
     <Table striped bordered hover>
       <thead>
@@ -24,9 +16,8 @@ const TableUsers = ({ sales }) => {
         </tr>
       </thead>
       <tbody>
-        { sales.map(({ id, name, email, role }, index) => (
+        { users.map(({ id, name, email, role }, index) => (
           <tr
-            onClick={ () => navigateForSaleDetails(id) }
             key={ index }
           >
             <td
