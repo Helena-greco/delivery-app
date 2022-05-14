@@ -65,7 +65,7 @@ const Orders = () => {
       <Container>
         <input
           type="text"
-          data-testid="admin_manage__input-email"
+          data-testid="admin_manage__input-name"
           value={ name }
           placeholder="name"
           onChange={ ({ target }) => setName(target.value) }
