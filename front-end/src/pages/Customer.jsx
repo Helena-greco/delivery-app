@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Row } from 'react-bootstrap';
+import { Row, Container } from 'react-bootstrap';
 import Header from '../components/Header';
 import CardComponent from '../components/Card';
 import ButtonCart from '../components/ButtonCart';
@@ -50,13 +50,13 @@ const Customer = () => {
   ));
 
   return (
-    <>
+    <Container>
       <Header />
       <Row className="g-5 text-center">
         { !loading && mapProducts() }
       </Row>
       <ButtonCart totalCart={ totalCart } />
-    </>
+    </Container>
   );
 };
 
