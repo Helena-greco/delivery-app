@@ -1,30 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { Row } from 'react-bootstrap';
+import React, { useState, useEffect, useContext } from 'react';
+import { Row, Container } from 'react-bootstrap';
 import Header from '../components/Header';
 import CardComponent from '../components/Card';
 import ButtonCart from '../components/ButtonCart';
 import { fetchApiProducts } from '../services/fetchApi';
+import DeliveryContext from '../context/deliveryContext';
 
 const Customer = () => {
   const [products, setProducts] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const { setUser } = useContext(DeliveryContext);
 
   const getProducts = async () => {
     const response = await fetchApiProducts();
     const data = await response.json();
-    const dataStorage = JSON.parse(localStorage.getItem('carShop'));
+    /* const dataStorage = JSON.parse(localStorage.getItem('carShop'));
     if (dataStorage) {
       dataStorage.forEach((item) => {
         data.find((e) => e.id === item.id).quantity = item.quantity;
       });
       setProducts(data);
       return;
-    }
+    } */
     setProducts(data);
+    setLoading(false);
   };
 
   useEffect(() => {
     getProducts();
+    localStorage.removeItem('carShop');
+    const dataStorage = JSON.parse(localStorage.getItem('user'));
+    if (dataStorage) {
+      const { id, name, role, token } = dataStorage;
+      setUser({ id, name, role, token });
+    }
   }, []);
 
   const mapProducts = () => products.map((product, index) => (
@@ -40,13 +50,13 @@ const Customer = () => {
   ));
 
   return (
-    <>
+    <Container>
       <Header />
       <Row className="g-5 text-center">
-        { mapProducts() }
+        { !loading && mapProducts() }
       </Row>
       <ButtonCart totalCart={ totalCart } />
-    </>
+    </Container>
   );
 };
 

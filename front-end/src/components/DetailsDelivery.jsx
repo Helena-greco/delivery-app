@@ -1,17 +1,12 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
-const DetailsDelivery = () => (
+const DetailsDelivery = ({ setEndereço, setNumeroEndereco }) => (
   <Form
     className="card mt-3 pb-3 pt-1 w-50"
     style={ { maxWidth: '500px', minWidth: '300px' } }
   >
-    <Form.Select
-      data-testid="customer_checkout__select-seller"
-      aria-label="Vendedor Responsável:"
-    >
-      <option>Vendedor</option>
-    </Form.Select>
     <Form.Group className="mb-3" controlId="formBasicAddress">
       <Form.Label>Endereço</Form.Label>
       <Form.Control
@@ -26,12 +21,12 @@ const DetailsDelivery = () => (
         onChange={ ({ target }) => setNumeroEndereco(target.value) }
       />
     </Form.Group>
-    <Button
-      data-testid="customer_checkout__button-submit-order"
-    >
-      Finalizar Pedido
-    </Button>
   </Form>
 );
+
+DetailsDelivery.propTypes = {
+  setEndereço: PropTypes.func.isRequired,
+  setNumeroEndereco: PropTypes.func.isRequired,
+};
 
 export default DetailsDelivery;

@@ -1,9 +1,18 @@
 const express = require('express');
-const getAllProducts = require('../database/controllers/productController');
+const { validateToken } = require('../database/middlewares/validateToken');
+const { getProducts,
+  getOrders,
+  createOrder,
+  createSaleProducts,
+  getOrderById } = require('../database/controllers/productController');
 
 const router = express.Router();
 
 router
-  .get('/products', getAllProducts.getAll);
+  .get('/products', getProducts)
+  .get('/orders/:id', getOrderById)
+  .get('/orders', getOrders)
+  .post('/orders', validateToken, createOrder)
+  .post('/saleProduct', validateToken, createSaleProducts);
 
 module.exports = { router };

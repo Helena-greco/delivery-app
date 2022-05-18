@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Figure, Form, Button, Alert } from 'react-bootstrap';
 import Logo from '../images/one-more-beer-logo.jpeg';
@@ -18,6 +18,13 @@ const Login = () => {
     return regexEmail.test(userEmail);
   };
 
+  const navigateByRole = () => {
+    const dataStorage = JSON.parse(localStorage.getItem('user'));
+    if (dataStorage.role === 'customer') navigate('/customer/products');
+    if (dataStorage.role === 'administrator') navigate('/admin/manage');
+    if (dataStorage.role === 'seller') navigate('/seller/orders');
+  };
+
   const handleClick = async (event) => {
     event.preventDefault();
     const result = await fetchApi(email, password);
@@ -28,12 +35,22 @@ const Login = () => {
     const POST = 200;
     if (result.status === POST) {
       const body = await result.json();
-      const { name, role, token } = body;
-      setUser({ name, email, role, token });
-      localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
-      navigate('/customer/products');
+      const { id, name, role, token } = body;
+      setUser({ id, name, email, role, token });
+      localStorage.setItem('user', JSON.stringify({ id, name, email, role, token }));
+      navigateByRole();
     }
   };
+
+  const userIsOn = () => {
+    const dataStorage = JSON.parse(localStorage.getItem('user'));
+    if (dataStorage) {
+      setUser(dataStorage);
+      navigateByRole();
+    }
+  };
+
+  useEffect(userIsOn, []);
 
   const MIN_LENGTH = 6;
   const ALERT = (

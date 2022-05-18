@@ -4,10 +4,16 @@ import DeliveryContext from './deliveryContext';
 
 const DeliveryProvider = ({ children }) => {
   const [user, setUser] = useState({});
+  const [sellers, setSellers] = useState([]);
+  const [saleStatus, setSaleStatus] = useState('');
 
   const context = {
     user,
     setUser,
+    sellers,
+    setSellers,
+    saleStatus,
+    setSaleStatus,
   };
   return (
     <DeliveryContext.Provider value={ context }>

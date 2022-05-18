@@ -47,3 +47,134 @@ export const fetchApiProducts = async () => {
   const response = await fetchProducts;
   return response;
 };
+
+export const fetchApiOrders = async () => {
+  const fetchProducts = fetch(`http://${URL}:${PORT}/customer/orders`, {
+    method: 'GET',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+  });
+  const response = await fetchProducts;
+  return response;
+};
+
+export const fetchApiCreateOrder = async (order, token) => {
+  const fetchCreateOrder = fetch(`http://${URL}:${PORT}/customer/orders`, {
+    method: 'POST',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      user_id: order.userId,
+      seller_id: order.sellerId,
+      total_price: order.totalPrice,
+      delivery_address: order.deliveryAddress,
+      delivery_number: order.deliveryNumber,
+      status: order.status,
+    }),
+  });
+  const response = await fetchCreateOrder;
+  return response;
+};
+
+export const fetchApiOrderById = async (id) => {
+  const fetchOrderById = fetch(`http://${URL}:${PORT}/customer/orders/${id}`, {
+    method: 'GET',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+  });
+  const response = await fetchOrderById;
+  return response;
+};
+
+export const fetchApiOrderSellerById = async () => {
+  const fetchOrderSellerById = fetch(`http://${URL}:${PORT}/seller/orders/`, {
+    method: 'GET',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+  });
+  const response = await fetchOrderSellerById;
+  return response;
+};
+
+export const fetchApiUpdateOrderStatusById = async (id, status) => {
+  try {
+    const fetchUpdateOrderStatusById = fetch(`http://${URL}:${PORT}/seller/orders/${id}`, {
+      method: 'PATCH',
+      headers: {
+        Accept: appJson,
+        'Content-Type': appJson,
+      },
+      body: JSON.stringify({ status }),
+    });
+    const response = await fetchUpdateOrderStatusById;
+    return response;
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+export const fetchApiGetSellers = async () => {
+  const fetchSellers = fetch(`http://${URL}:${PORT}/sellers`, {
+    method: 'GET',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+  });
+  const response = await fetchSellers;
+  return response;
+};
+
+export const fetchApiCreateSaleProducts = async (arrayBody, token) => {
+  const fetchCreateSaleProducts = fetch(`http://${URL}:${PORT}/customer/saleProduct`, {
+    method: 'POST',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+      Authorization: token,
+    },
+    body: JSON.stringify(arrayBody),
+  });
+  const response = await fetchCreateSaleProducts;
+  return response;
+};
+
+export const fetchAllUsers = async () => {
+  const fetchSellers = fetch(`http://${URL}:${PORT}/admin`, {
+    method: 'GET',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+  });
+  const response = await fetchSellers;
+  return response;
+};
+
+export const fetchApiAdminRegister = async (name, email, password, role) => {
+  console.log(role);
+  const fetchRegister = fetch(`http://${URL}:${PORT}/admin/register`, {
+    method: 'POST',
+    headers: {
+      Accept: appJson,
+      'Content-Type': appJson,
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      role,
+    }),
+  });
+  const response = await fetchRegister;
+  return response;
+};
